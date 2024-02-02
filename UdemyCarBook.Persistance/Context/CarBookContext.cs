@@ -11,7 +11,7 @@ public class CarBookContext : DbContext
 {
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseSqlServer("Server=DESKTOP-A6C5CRN\\MSSQLSERVER01;Database=CarBookDb;integrated Security=true;");
+        optionsBuilder.UseSqlServer("Server=DESKTOP-A6C5CRN\\MSSQLSERVER01;Database=CarBookDb;integrated Security=true;TrustServerCertificate=True;");
     }
     public DbSet<About> Abouts { get; set; }
     public DbSet<Banner> Banners { get; set; }

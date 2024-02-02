@@ -11,6 +11,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastru
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UdemyCarBook.Persistance", "UdemyCarBook.Persistance\UdemyCarBook.Persistance.csproj", "{011B6F86-C0AB-4AB2-B0A1-9EC4C22D8AF9}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{A4C577AB-B14A-475D-9002-E3ABB6950257}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UdemyCarBook.WebAPI", "UdemyCarBook.WebAPI\UdemyCarBook.WebAPI.csproj", "{C3A6471F-DE1B-4535-9C6C-5A631F5A3A16}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +29,10 @@ Global
 		{011B6F86-C0AB-4AB2-B0A1-9EC4C22D8AF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{011B6F86-C0AB-4AB2-B0A1-9EC4C22D8AF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{011B6F86-C0AB-4AB2-B0A1-9EC4C22D8AF9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3A6471F-DE1B-4535-9C6C-5A631F5A3A16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3A6471F-DE1B-4535-9C6C-5A631F5A3A16}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3A6471F-DE1B-4535-9C6C-5A631F5A3A16}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3A6471F-DE1B-4535-9C6C-5A631F5A3A16}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -32,6 +40,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{DD3AF5FB-396D-4827-8EA7-FB3B7BF250F6} = {60AAC599-4680-44D5-A66F-9E66288F3255}
 		{011B6F86-C0AB-4AB2-B0A1-9EC4C22D8AF9} = {6A438EAE-2FC6-4A4A-B2E1-FA9B2568EB4C}
+		{C3A6471F-DE1B-4535-9C6C-5A631F5A3A16} = {A4C577AB-B14A-475D-9002-E3ABB6950257}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {108CDF71-737A-4641-940D-DD813218C692}
