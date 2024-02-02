@@ -5,8 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace UdemyCarBook.Domain.Entities;
-public class Location
+public class SocialMedia
 {
-    public int LocationID { get; set; }
+    public int SocialMediaID { get; set; }
     public string Name { get; set; }
+    public string Url { get; set; }
+    public string Icon { get; set; }
 }

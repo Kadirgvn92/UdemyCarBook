@@ -5,8 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace UdemyCarBook.Domain.Entities;
-public class Location
+public class Feature
 {
-    public int LocationID { get; set; }
+    public int FeatureID { get; set; }
     public string Name { get; set; }
+    public List<CarFeature> CarFeatures { get; set; }
 }

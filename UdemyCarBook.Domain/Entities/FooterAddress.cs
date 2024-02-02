@@ -5,11 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace UdemyCarBook.Domain.Entities;
-public class Banner
+public class FooterAddress
 {
-    public int BannerID { get; set; }
-    public string Title { get; set; }
+    public int FooterAddressID { get; set; }
     public string Description { get; set; }
-    public string VideoDescription { get; set; }
-    public string Video { get; set; }
+    public string Address { get; set; }
+    public string Phone { get; set; }
+    public string Email { get; set; }
+
 }

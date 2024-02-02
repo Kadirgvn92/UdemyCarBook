@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 namespace UdemyCarBook.Domain.Entities;
 public class Car
 {
-    public Guid CarID { get; set; }
-    public Guid BrandID { get; set; }
-    public Brand Brand { get; set; }
+    public int CarID { get; set; }
+    public int BrandID { get; set; }
+    public Brand Brands { get; set; }
     public string Model { get; set; }
     public string CoverImageUrl { get; set; }
     public int Km { get; set; }
@@ -18,4 +18,6 @@ public class Car
     public short Luggage { get; set; }
     public string Fuel { get; set; }
     public string BigImageUrl { get; set; }
+    public List<CarFeature> CarFeatures { get; set; }
+    public List<CarDescription> CarDescriptions { get; set; }
 }

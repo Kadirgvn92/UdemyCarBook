@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace UdemyCarBook.Domain.Entities;
 public class Brand
 {
-    public Guid BrandID { get; set; }
+    public int BrandID { get; set; }
     public string Name { get; set; }
-    public IQueryable<Car> Cars { get; set; }
+    public List<Car> Cars { get; set; }
 }

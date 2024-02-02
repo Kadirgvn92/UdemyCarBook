@@ -5,8 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace UdemyCarBook.Domain.Entities;
-public class Location
+public class Category
 {
-    public int LocationID { get; set; }
+    public int CategoryID { get; set; }
     public string Name { get; set; }
 }
