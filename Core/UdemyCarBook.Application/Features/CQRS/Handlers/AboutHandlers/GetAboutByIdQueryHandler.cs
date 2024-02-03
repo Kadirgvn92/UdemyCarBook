@@ -17,10 +17,10 @@ public class GetAboutByIdQueryHandler
     {
         _aboutRepository = aboutRepository;
     }
-    public async Task<GetAboutByIdQueryResult> Handle(GetAboutByIdQuery query)
+    public async Task<GetBannertByIdQueryResult> Handle(GetAboutByIdQuery query)
     {
         var values = await _aboutRepository.GetByIDAsync(query.Id);
-        return new GetAboutByIdQueryResult
+        return new GetBannertByIdQueryResult
         {
             AboutID = values.AboutID,
             Description = values.Description,

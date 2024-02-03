@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace UdemyCarBook.Application.Features.CQRS.Results.AboutResults;
-public class GetAboutByIdQueryResult
+public class GetBannertByIdQueryResult
 {
     public int AboutID { get; set; }
     public string Title { get; set; }
