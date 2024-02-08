@@ -9,13 +9,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UdemyCarBook.Domain", "Udem
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{6A438EAE-2FC6-4A4A-B2E1-FA9B2568EB4C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UdemyCarBook.Persistance", "UdemyCarBook.Persistance\UdemyCarBook.Persistance.csproj", "{011B6F86-C0AB-4AB2-B0A1-9EC4C22D8AF9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UdemyCarBook.Persistance", "UdemyCarBook.Persistance\UdemyCarBook.Persistance.csproj", "{011B6F86-C0AB-4AB2-B0A1-9EC4C22D8AF9}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{A4C577AB-B14A-475D-9002-E3ABB6950257}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UdemyCarBook.WebAPI", "UdemyCarBook.WebAPI\UdemyCarBook.WebAPI.csproj", "{C3A6471F-DE1B-4535-9C6C-5A631F5A3A16}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UdemyCarBook.WebAPI", "UdemyCarBook.WebAPI\UdemyCarBook.WebAPI.csproj", "{C3A6471F-DE1B-4535-9C6C-5A631F5A3A16}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UdemyCarBook.Application", "Core\UdemyCarBook.Application\UdemyCarBook.Application.csproj", "{2D99D3B5-F545-4479-95FD-15A87F0295D1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UdemyCarBook.Application", "Core\UdemyCarBook.Application\UdemyCarBook.Application.csproj", "{2D99D3B5-F545-4479-95FD-15A87F0295D1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

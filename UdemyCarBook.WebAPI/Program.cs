@@ -1,18 +1,12 @@
 using UdemyCarBook.Application.Features.CQRS.Handlers.AboutHandlers;
 using UdemyCarBook.Application.Interfaces;
 using UdemyCarBook.Persistance.Context;
+using UdemyCarBook.Persistance.Extensions;
 using UdemyCarBook.Persistance.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddScoped<CarBookContext>();
-builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
-builder.Services.AddScoped<GetAboutByIdQueryHandler>();
-builder.Services.AddScoped<GetAboutQueryHandler>();
-
-builder.Services.AddScoped<CreateAboutCommandHandler>();
-builder.Services.AddScoped<UpdateAboutCommandHandler>();
-builder.Services.AddScoped<RemoveAboutCommandHandler>();
+builder.Services.ContainerDependencies();
 
 builder.Services.AddControllers();
 
