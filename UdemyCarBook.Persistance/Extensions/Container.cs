@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UdemyCarBook.Application.Features.CQRS.Handlers.AboutHandlers;
 using UdemyCarBook.Application.Features.CQRS.Handlers.BannerHandlers;
+using UdemyCarBook.Application.Features.CQRS.Handlers.BrandHandlers;
 using UdemyCarBook.Application.Features.CQRS.Queries.BannerQueries;
 using UdemyCarBook.Application.Interfaces;
 using UdemyCarBook.Persistance.Context;
@@ -30,6 +31,12 @@ public static class Container
         services.AddScoped<CreateBannerCommandHandler>();
         services.AddScoped<UpdateBannerCommandHandler>();
         services.AddScoped<RemoveBannerCommandHandler>();
-        
+
+        services.AddScoped<GetBrandQueryHandler>();
+        services.AddScoped<GetBrandByIDQueryHandler>();
+        services.AddScoped<CreateBrandCommandHandler>();
+        services.AddScoped<UpdateBrandCommandHandler>();
+        services.AddScoped<RemoveBrandCommandHandler>();
+
     }
 }
