@@ -12,6 +12,7 @@ public class CarController : ControllerBase
     private readonly CreateCarCommandHandler _createCarCommandHandler;
     private readonly GetCarByIDQueryHandler _getCarByIdQueryHandler;
     private readonly GetCarQueryHandler _getCarQueryHandler;
+    private readonly GetCarWithBrandQueryHandler _getCarWithQueryHandler;
     private readonly UpdateCarCommandHandler _updateCarCommandHandler;
     private readonly RemoveCarCommandHandler _removeCarCommandHandler;
 
@@ -19,13 +20,15 @@ public class CarController : ControllerBase
         GetCarByIDQueryHandler getCarByIdQueryHandler,
         GetCarQueryHandler getCarQueryHandler,
         UpdateCarCommandHandler updateCarCommandHandler,
-        RemoveCarCommandHandler removeCarCommandHandler)
+        RemoveCarCommandHandler removeCarCommandHandler,
+        GetCarWithBrandQueryHandler getCarWithQueryHandler)
     {
         _createCarCommandHandler = createCarCommandHandler;
         _getCarByIdQueryHandler = getCarByIdQueryHandler;
         _getCarQueryHandler = getCarQueryHandler;
         _updateCarCommandHandler = updateCarCommandHandler;
         _removeCarCommandHandler = removeCarCommandHandler;
+        _getCarWithQueryHandler = getCarWithQueryHandler;
     }
 
     [HttpGet]
@@ -57,5 +60,11 @@ public class CarController : ControllerBase
     {
         await _updateCarCommandHandler.Handle(command);
         return Ok("Araç bilgisi güncellendi");
+    }
+    [HttpGet("GetCarWithBrand")]
+    public async Task<IActionResult> GetCarWithBrand()
+    {
+        var values = await _getCarWithQueryHandler.Handle();
+        return Ok(values);
     }
 }
