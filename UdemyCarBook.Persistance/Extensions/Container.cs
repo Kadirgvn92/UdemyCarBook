@@ -1,17 +1,14 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UdemyCarBook.Application.Features.CQRS.Handlers.AboutHandlers;
 using UdemyCarBook.Application.Features.CQRS.Handlers.BannerHandlers;
 using UdemyCarBook.Application.Features.CQRS.Handlers.BrandHandlers;
 using UdemyCarBook.Application.Features.CQRS.Handlers.CarHandlers;
-using UdemyCarBook.Application.Features.CQRS.Queries.BannerQueries;
 using UdemyCarBook.Application.Interfaces;
+using UdemyCarBook.Application.Interfaces.CarInterfaces;
+using UdemyCarBook.Domain.Entities;
 using UdemyCarBook.Persistance.Context;
 using UdemyCarBook.Persistance.Repositories;
+using UdemyCarBook.Persistance.Repositories.CarRepositories;
 
 namespace UdemyCarBook.Persistance.Extensions;
 public static class Container 
@@ -20,6 +17,7 @@ public static class Container
     {
         services.AddScoped<CarBookContext>();
         services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+        services.AddScoped(typeof(ICarRepository), typeof(CarRepository));
         services.AddScoped<GetAboutByIdQueryHandler>();
         services.AddScoped<GetAboutQueryHandler>();
         

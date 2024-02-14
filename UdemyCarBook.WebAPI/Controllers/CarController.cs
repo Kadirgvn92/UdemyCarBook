@@ -62,9 +62,9 @@ public class CarController : ControllerBase
         return Ok("Araç bilgisi güncellendi");
     }
     [HttpGet("GetCarWithBrand")]
-    public async Task<IActionResult> GetCarWithBrand()
+    public IActionResult GetCarWithBrand()
     {
-        var values = await _getCarWithQueryHandler.Handle();
+        var values =  _getCarWithQueryHandler.Handle();
         return Ok(values);
     }
 }

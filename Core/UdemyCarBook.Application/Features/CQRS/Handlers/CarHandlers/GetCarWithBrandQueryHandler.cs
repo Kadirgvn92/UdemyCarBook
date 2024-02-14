@@ -5,26 +5,28 @@ using System.Text;
 using System.Threading.Tasks;
 using UdemyCarBook.Application.Features.CQRS.Results.CarResults;
 using UdemyCarBook.Application.Interfaces;
+using UdemyCarBook.Application.Interfaces.CarInterfaces;
 using UdemyCarBook.Domain.Entities;
 
 namespace UdemyCarBook.Application.Features.CQRS.Handlers.CarHandlers;
 public class GetCarWithBrandQueryHandler
 {
-    private readonly IRepository<Car> _carRepository;
+    private readonly ICarRepository _carRepository;
 
-    public GetCarWithBrandQueryHandler(IRepository<Car> carRepository)
+    public GetCarWithBrandQueryHandler(ICarRepository carRepository)
     {
         _carRepository = carRepository;
     }
-    public async Task<List<GetCarWithBrandQueryResult>> Handle()
+
+    public List<GetCarWithBrandQueryResult> Handle()
     {
-        var values = await _carRepository.GetAllAsync();
+        var values = _carRepository.GetCarsListWithBrand();
         return values.Select(x => new GetCarWithBrandQueryResult
         {
+            CarID = x.CarID,
+            BrandID = x.BrandID,
             BrandName = x.Brands.Name,
             BigImageUrl = x.BigImageUrl,
-            BrandID = x.BrandID,
-            CarID = x.CarID,
             CoverImageUrl = x.CoverImageUrl,
             Fuel = x.Fuel,
             Km = x.Km,

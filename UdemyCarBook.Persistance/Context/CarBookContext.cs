@@ -13,6 +13,7 @@ public class CarBookContext : DbContext
     {
         optionsBuilder.UseSqlServer("Server=DESKTOP-A6C5CRN\\MSSQLSERVER01;Database=CarBookDb;integrated Security=true;TrustServerCertificate=True;");
     }
+
     public DbSet<About> Abouts { get; set; }
     public DbSet<Banner> Banners { get; set; }
     public DbSet<Brand> Brands { get; set; }
