@@ -8,7 +8,7 @@ using UdemyCarBook.Application.Features.CQRS.Results.CategoryResults;
 using UdemyCarBook.Application.Interfaces;
 using UdemyCarBook.Domain.Entities;
 
-namespace UdemyCarBook.Application.Features.CQRS.Handlers.CategoryyHandlers;
+namespace UdemyCarBook.Application.Features.CQRS.Handlers.CategoryHandlers;
 public class GetCategoryByIDQueryHandler
 {
     private readonly IRepository<Category> _categoryRepository;

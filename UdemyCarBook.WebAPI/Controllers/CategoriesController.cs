@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using UdemyCarBook.Application.Features.CQRS.Commands.CategoryCommands;
-using UdemyCarBook.Application.Features.CQRS.Handlers.CategoryyHandlers;
+using UdemyCarBook.Application.Features.CQRS.Handlers.CategoryHandlers;
 using UdemyCarBook.Application.Features.CQRS.Queries.CategoryQueries;
 
 namespace UdemyCarBook.WebAPI.Controllers;

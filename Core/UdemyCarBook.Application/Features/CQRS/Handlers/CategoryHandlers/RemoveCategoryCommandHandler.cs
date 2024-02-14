@@ -7,7 +7,7 @@ using UdemyCarBook.Application.Features.CQRS.Commands.CategoryCommands;
 using UdemyCarBook.Application.Interfaces;
 using UdemyCarBook.Domain.Entities;
 
-namespace UdemyCarBook.Application.Features.CQRS.Handlers.CategoryyHandlers;
+namespace UdemyCarBook.Application.Features.CQRS.Handlers.CategoryHandlers;
 public class RemoveCategoryCommandHandler
 {
     private readonly IRepository<Category> _categoryRepository;
