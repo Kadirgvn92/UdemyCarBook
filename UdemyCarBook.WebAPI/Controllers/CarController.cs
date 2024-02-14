@@ -1,0 +1,61 @@
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using UdemyCarBook.Application.Features.CQRS.Commands.CarCommands;
+using UdemyCarBook.Application.Features.CQRS.Handlers.CarHandlers;
+using UdemyCarBook.Application.Features.CQRS.Queries.CarQueries;
+
+namespace UdemyCarBook.WebAPI.Controllers;
+[Route("api/[controller]")]
+[ApiController]
+public class CarController : ControllerBase
+{
+    private readonly CreateCarCommandHandler _createCarCommandHandler;
+    private readonly GetCarByIDQueryHandler _getCarByIdQueryHandler;
+    private readonly GetCarQueryHandler _getCarQueryHandler;
+    private readonly UpdateCarCommandHandler _updateCarCommandHandler;
+    private readonly RemoveCarCommandHandler _removeCarCommandHandler;
+
+    public CarController(CreateCarCommandHandler createCarCommandHandler,
+        GetCarByIDQueryHandler getCarByIdQueryHandler,
+        GetCarQueryHandler getCarQueryHandler,
+        UpdateCarCommandHandler updateCarCommandHandler,
+        RemoveCarCommandHandler removeCarCommandHandler)
+    {
+        _createCarCommandHandler = createCarCommandHandler;
+        _getCarByIdQueryHandler = getCarByIdQueryHandler;
+        _getCarQueryHandler = getCarQueryHandler;
+        _updateCarCommandHandler = updateCarCommandHandler;
+        _removeCarCommandHandler = removeCarCommandHandler;
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> CarList()
+    {
+        var values = await _getCarQueryHandler.Handle();
+        return Ok(values);
+    }
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetCar(int id)
+    {
+        var values = await _getCarByIdQueryHandler.Handle(new GetCarByIDQuery(id));
+        return Ok(values);
+    }
+    [HttpPost]
+    public async Task<IActionResult> CreateCar(CreateCarCommand command)
+    {
+        await _createCarCommandHandler.Handle(command);
+        return Ok("Araç bilgii eklendi");
+    }
+    [HttpDelete]
+    public async Task<IActionResult> RemoveCar(int id)
+    {
+        await _removeCarCommandHandler.Handle(new RemoveCarCommand(id));
+        return Ok("Araç bilgisi silindi");
+    }
+    [HttpPut]
+    public async Task<IActionResult> UpdateCar(UpdateCarCommand command)
+    {
+        await _updateCarCommandHandler.Handle(command);
+        return Ok("Araç bilgisi güncellendi");
+    }
+}

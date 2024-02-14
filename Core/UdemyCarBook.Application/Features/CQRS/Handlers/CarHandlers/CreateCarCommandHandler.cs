@@ -21,7 +21,6 @@ public class CreateCarCommandHandler
         await _repositories.CreateAsync(new Car
         {
             BigImageUrl = command.BigImageUrl,
-            Brands = command.Brands,
             BrandID = command.BrandID,
             CoverImageUrl = command.CoverImageUrl,
             Fuel = command.Fuel,
