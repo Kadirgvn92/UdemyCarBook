@@ -3,6 +3,7 @@ using UdemyCarBook.Application.Features.CQRS.Handlers.AboutHandlers;
 using UdemyCarBook.Application.Features.CQRS.Handlers.BannerHandlers;
 using UdemyCarBook.Application.Features.CQRS.Handlers.BrandHandlers;
 using UdemyCarBook.Application.Features.CQRS.Handlers.CarHandlers;
+using UdemyCarBook.Application.Features.CQRS.Handlers.CategoryyHandlers;
 using UdemyCarBook.Application.Interfaces;
 using UdemyCarBook.Application.Interfaces.CarInterfaces;
 using UdemyCarBook.Domain.Entities;
@@ -43,6 +44,12 @@ public static class Container
         services.AddScoped<CreateCarCommandHandler>();
         services.AddScoped<UpdateCarCommandHandler>();
         services.AddScoped<RemoveCarCommandHandler>();
+
+        services.AddScoped<GetCategoryQueryHandler>();
+        services.AddScoped<GetCategoryByIDQueryHandler>();
+        services.AddScoped<CreateCategoryCommandHandler>();
+        services.AddScoped<UpdateCategoryCommandHandler>();
+        services.AddScoped<RemoveCategoryCommandHandler>();
 
     }
 }
