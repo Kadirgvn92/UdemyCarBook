@@ -26,7 +26,7 @@ public class Repository<T> : IRepository<T> where T : class
     public async Task DeleteAsync(T entity)
     {
        _context.Set<T>().Remove(entity);
-        _context.SaveChangesAsync();
+        await _context.SaveChangesAsync();
     }
 
     public async Task<List<T>> GetAllAsync()
