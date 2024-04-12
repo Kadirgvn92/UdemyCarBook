@@ -9,11 +9,11 @@ using UdemyCarBook.Application.Interfaces;
 using UdemyCarBook.Domain.Entities;
 
 namespace UdemyCarBook.Application.Features.Mediator.Handlers.LocationHandlers;
-public class RemoveLocationCommandHandler : IRequestHandler<RemoveLocationCommand>
+public class RemoveSocialMediaCommandHandler : IRequestHandler<RemoveLocationCommand>
 {
     private readonly IRepository<Location> _locationRepository;
 
-    public RemoveLocationCommandHandler(IRepository<Location> locationRepository)
+    public RemoveSocialMediaCommandHandler(IRepository<Location> locationRepository)
     {
         _locationRepository = locationRepository;
     }
