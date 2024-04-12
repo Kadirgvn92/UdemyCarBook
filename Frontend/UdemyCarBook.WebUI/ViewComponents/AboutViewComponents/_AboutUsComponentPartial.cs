@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using UdemyCarBook.DTO.AboutDTOs;
 
 namespace UdemyCarBook.WebUI.ViewComponents.AboutViewComponents;
 
@@ -18,8 +19,9 @@ public class _AboutUsComponentPartial : ViewComponent
         var responseMessage = await clients.GetAsync("https://localhost:7259/api/About");
         if (responseMessage.IsSuccessStatusCode)
         {
-            var jsonData = await responseMessage.Content.ReadAsStringAsync();   
-            //var values = JsonConvert.DeserializeObject<List<>>(jsonData);
+            var jsonData = await responseMessage.Content.ReadAsStringAsync();
+            var values = JsonConvert.DeserializeObject<List<ResultAboutDTO>>(jsonData);
+            return View(values);
         }
         return View();
     }
