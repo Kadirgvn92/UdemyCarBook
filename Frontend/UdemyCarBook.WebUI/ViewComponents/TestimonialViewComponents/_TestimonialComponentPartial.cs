@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using UdemyCarBook.DTO.TestimonialDTOs;
 
 namespace UdemyCarBook.WebUI.ViewComponents.TestimonialViewComponents;
 
@@ -19,7 +20,8 @@ public class _TestimonialComponentPartial : ViewComponent
         if (responseMessage.IsSuccessStatusCode)
         {
             var jsonData = await responseMessage.Content.ReadAsStringAsync();
-            //var values = JsonConvert.DeserializeObject<List<>>(jsonData);
+            var values = JsonConvert.DeserializeObject<List<ResultTestimonialDTO>>(jsonData);
+            return View(values);
         }
         return View();
     }
