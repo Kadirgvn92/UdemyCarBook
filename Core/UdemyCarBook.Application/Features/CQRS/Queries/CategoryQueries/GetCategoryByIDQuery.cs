@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 namespace UdemyCarBook.Application.Features.CQRS.Queries.CategoryQueries;
 public class GetCategoryByIDQuery
 {
-    public GetCategoryByIDQuery(int ıD)
+    public GetCategoryByIDQuery(int id)
     {
-        ID = ıD;
+        ID = id;
     }
 
     public int ID { get; set; }
