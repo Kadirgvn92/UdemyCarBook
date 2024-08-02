@@ -24,7 +24,13 @@ public class CarRepository : ICarRepository
         return values;
     }
 
-    public List<Car> GetLast5CarWithBrand()
+	public List<Car> GetCarsWithPricings()
+	{
+        var values = _context.Cars.Include(x => x.Brands).Include(x => x.CarPricings).ToList();
+        return values;
+	}
+
+	public List<Car> GetLast5CarWithBrand()
     {
         var values = _context.Cars.Include(x => x.Brands).OrderByDescending(x => x.CarID).Take(5).ToList();
         return values;  
