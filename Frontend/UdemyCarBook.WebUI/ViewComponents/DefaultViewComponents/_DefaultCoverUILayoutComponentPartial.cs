@@ -17,7 +17,7 @@ public class _DefaultCoverUILayoutComponentPartial :ViewComponent
     public async Task<IViewComponentResult> InvokeAsync()
     {
         var clients = _httpClientFactory.CreateClient();
-        var responseMessage = await clients.GetAsync("https://localhost:7259/api/Banner");
+        var responseMessage = await clients.GetAsync("https://localhost:44323/api/Banner");
         if (responseMessage.IsSuccessStatusCode)
         {
             var jsonData = await responseMessage.Content.ReadAsStringAsync();

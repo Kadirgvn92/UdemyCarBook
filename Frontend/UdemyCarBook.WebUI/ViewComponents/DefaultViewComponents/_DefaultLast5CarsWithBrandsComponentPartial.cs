@@ -17,7 +17,7 @@ public class _DefaultLast5CarsWithBrandsComponentPartial :ViewComponent
     public async Task<IViewComponentResult> InvokeAsync()
     {
         var clients = _httpClientFactory.CreateClient();
-        var responseMessage = await clients.GetAsync("https://localhost:7259/api/Car/GetLast5CarWithBrand");
+        var responseMessage = await clients.GetAsync("https://localhost:44323/api/Car/GetLast5CarWithBrand");
         if (responseMessage.IsSuccessStatusCode)
         {
             var jsonData = await responseMessage.Content.ReadAsStringAsync();

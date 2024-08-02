@@ -18,7 +18,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
       "dotnetRunMessages": true,
-      "applicationUrl": "https://localhost:7259;http://localhost:5006"
+      "applicationUrl": "https://localhost:44323;http://localhost:5006"
     },
     "IIS Express": {
       "commandName": "IISExpress",
@@ -31,10 +31,10 @@
     "WSL": {
       "commandName": "WSL2",
       "launchBrowser": true,
-      "launchUrl": "https://localhost:7259/swagger",
+      "launchUrl": "https://localhost:44323/swagger",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "ASPNETCORE_URLS": "https://localhost:7259;http://localhost:5006"
+        "ASPNETCORE_URLS": "https://localhost:44323;http://localhost:5006"
       },
       "distributionName": ""
     }

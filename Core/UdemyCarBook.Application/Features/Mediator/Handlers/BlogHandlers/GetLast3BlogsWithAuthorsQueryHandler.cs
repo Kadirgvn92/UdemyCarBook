@@ -23,7 +23,7 @@ public class GetLast3BlogsWithAuthorsQueryHandler : IRequestHandler<GetLast3Blog
 
     public async Task<List<GetLast3BlogsWithAuthorsQueryResult>> Handle(GetLast3BlogsWithAuthorsQuery request, CancellationToken cancellationToken)
     {
-        var values = _blogRepository.GetLast3BlogsWithAuthors();
+        var values =  _blogRepository.GetLast3BlogsWithAuthors();
         return values.Select(x => new GetLast3BlogsWithAuthorsQueryResult
         {
             AuthorID = x.AuthorID,

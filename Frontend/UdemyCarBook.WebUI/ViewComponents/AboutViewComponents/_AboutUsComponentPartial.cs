@@ -16,7 +16,7 @@ public class _AboutUsComponentPartial : ViewComponent
     public async Task< IViewComponentResult> InvokeAsync()
     {
         var clients = _httpClientFactory.CreateClient();
-        var responseMessage = await clients.GetAsync("https://localhost:7259/api/About");
+        var responseMessage = await clients.GetAsync("https://localhost:44323/api/About");
         if (responseMessage.IsSuccessStatusCode)
         {
             var jsonData = await responseMessage.Content.ReadAsStringAsync();

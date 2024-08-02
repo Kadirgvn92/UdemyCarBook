@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace UdemyCarBook.Application.Features.CQRS.Results.CarResults;
-public class GetLast5CarsWithBrandQueryResult
+public class GetLast5CarsWithBrandQuery
 {
     public int CarID { get; set; }
     public int BrandID { get; set; }

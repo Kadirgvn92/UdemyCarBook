@@ -15,7 +15,7 @@ public class ServiceController : Controller
     public async Task<IActionResult> Index()
     {
         var client = _httpClientFactory.CreateClient();
-        var responseMessage = await client.GetAsync("https://localhost:7259/api/Services");
+        var responseMessage = await client.GetAsync("https://localhost:44323/api/Services");
         if (responseMessage.IsSuccessStatusCode)
         {
             var jsonData = await responseMessage.Content.ReadAsStringAsync();

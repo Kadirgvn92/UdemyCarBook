@@ -15,10 +15,10 @@ public class GetLast5CarsWithBrandQueryHandler
         _carRepository = carRepository;
     }
 
-    public List<GetLast5CarsWithBrandQueryResult> Handle()
+    public List<GetLast5CarsWithBrandQuery> Handle()
     {
         var values = _carRepository.GetLast5CarWithBrand();
-        return values.Select(x => new GetLast5CarsWithBrandQueryResult
+        return values.Select(x => new GetLast5CarsWithBrandQuery
         {
             CarID = x.CarID,
             BrandID = x.BrandID,

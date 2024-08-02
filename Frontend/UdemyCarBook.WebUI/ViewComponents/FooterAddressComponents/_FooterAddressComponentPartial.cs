@@ -17,7 +17,7 @@ public class _FooterAddressComponentPartial : ViewComponent
     public async Task<IViewComponentResult> InvokeAsync()
     {
         var client = _httpClientFactory.CreateClient();
-        var responseMessage = await client.GetAsync("https://localhost:7259/api/FooterAddresses");
+        var responseMessage = await client.GetAsync("https://localhost:44323/api/FooterAddresses");
         if(responseMessage.IsSuccessStatusCode)
         {
             var jsonData = await responseMessage.Content.ReadAsStringAsync();

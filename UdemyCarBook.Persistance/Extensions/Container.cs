@@ -6,11 +6,14 @@ using UdemyCarBook.Application.Features.CQRS.Handlers.CarHandlers;
 using UdemyCarBook.Application.Features.CQRS.Handlers.CategoryHandlers;
 using UdemyCarBook.Application.Features.CQRS.Handlers.ContactHandlers;
 using UdemyCarBook.Application.Features.CQRS.Results.CategoryResults;
+using UdemyCarBook.Application.Features.Mediator.Handlers.BlogHandlers;
 using UdemyCarBook.Application.Interfaces;
+using UdemyCarBook.Application.Interfaces.BlogInterfaces;
 using UdemyCarBook.Application.Interfaces.CarInterfaces;
 using UdemyCarBook.Domain.Entities;
 using UdemyCarBook.Persistance.Context;
 using UdemyCarBook.Persistance.Repositories;
+using UdemyCarBook.Persistance.Repositories.BlogRepositories;
 using UdemyCarBook.Persistance.Repositories.CarRepositories;
 
 namespace UdemyCarBook.Persistance.Extensions;
@@ -21,6 +24,7 @@ public static class Container
         services.AddScoped<CarBookContext>();
         services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
         services.AddScoped(typeof(ICarRepository), typeof(CarRepository));
+        services.AddScoped(typeof(IBlogRepository), typeof(BlogRepositories));
         services.AddScoped<GetAboutByIdQueryHandler>();
         services.AddScoped<GetAboutQueryHandler>();
         
@@ -59,6 +63,5 @@ public static class Container
         services.AddScoped<CreateCategoryCommandHandler>();
         services.AddScoped<UpdateCategoryCommandHandler>();
         services.AddScoped<RemoveCategoryCommandHandler>();
-
     }
 }

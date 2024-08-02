@@ -25,7 +25,7 @@ public class ContactController : Controller
         contactDto.SendDate = DateTime.Now;
         var jsonData = JsonConvert.SerializeObject(contactDto);
         StringContent stringContent = new StringContent(jsonData, Encoding.UTF8,"application/json");
-        var responsMessage = await client.PostAsync("https://localhost:7259/api/Contacts",stringContent);
+        var responsMessage = await client.PostAsync("https://localhost:44323/api/Contacts",stringContent);
         if (responsMessage.IsSuccessStatusCode)
         {
             return RedirectToAction("Index","Default");

@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using UdemyCarBook.Application.Features.CQRS.Results.CarResults;
 using UdemyCarBook.Application.Features.Mediator.Commands.BlogCommands;
 using UdemyCarBook.Application.Features.Mediator.Queries.BlogQueries;
 
@@ -43,6 +44,12 @@ public class BlogsController : ControllerBase
     {
         await _mediator.Send(command);
         return Ok("Blog updated successfully");
+    }
+    [HttpGet("GetLast3BlogsWithAuthorsList")]
+    public async Task<IActionResult> GetLast3BlogsWithAuthorsList()
+    {
+        var values = await _mediator.Send(new GetLast3BlogsWithAuthorsQuery());
+        return Ok(values);  
     }
 
 }
