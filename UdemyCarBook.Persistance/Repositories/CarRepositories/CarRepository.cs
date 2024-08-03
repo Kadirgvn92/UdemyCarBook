@@ -24,11 +24,7 @@ public class CarRepository : ICarRepository
         return values;
     }
 
-	public List<CarPricing> GetCarsWithPricings()
-	{
-        var values = _context.CarPricings.Include(x => x.Car).ThenInclude(y => y.Brands).Include(x => x.Pricing).ToList();
-        return values;
-	}
+	
 
 	public List<Car> GetLast5CarWithBrand()
     {

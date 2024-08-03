@@ -16,7 +16,6 @@ public class CarController : ControllerBase
     private readonly UpdateCarCommandHandler _updateCarCommandHandler;
     private readonly RemoveCarCommandHandler _removeCarCommandHandler;
     private readonly GetLast5CarsWithBrandQueryHandler _getLast5CarsWithBrandQueryHandler;
-    private readonly GetCarWithPricingQueryHandler _getCarWithPricingQueryHandler;
 
 	public CarController(CreateCarCommandHandler createCarCommandHandler,
 		GetCarByIDQueryHandler getCarByIdQueryHandler,
@@ -24,8 +23,8 @@ public class CarController : ControllerBase
 		UpdateCarCommandHandler updateCarCommandHandler,
 		RemoveCarCommandHandler removeCarCommandHandler,
 		GetCarWithBrandQueryHandler getCarWithQueryHandler,
-		GetLast5CarsWithBrandQueryHandler getLast5CarsWithBrandQueryHandler,
-		GetCarWithPricingQueryHandler getCarWithPricingQueryHandler)
+		GetLast5CarsWithBrandQueryHandler getLast5CarsWithBrandQueryHandler
+	)
 	{
 		_createCarCommandHandler = createCarCommandHandler;
 		_getCarByIdQueryHandler = getCarByIdQueryHandler;
@@ -34,7 +33,6 @@ public class CarController : ControllerBase
 		_removeCarCommandHandler = removeCarCommandHandler;
 		_getCarWithQueryHandler = getCarWithQueryHandler;
 		_getLast5CarsWithBrandQueryHandler = getLast5CarsWithBrandQueryHandler;
-		_getCarWithPricingQueryHandler = getCarWithPricingQueryHandler;
 	}
 
 	[HttpGet]
@@ -82,7 +80,7 @@ public class CarController : ControllerBase
     [HttpGet("GetCarWithPricingList")]
     public IActionResult GetCarWithPricingList()
     {
-        var values = _getCarWithPricingQueryHandler.Handle();
-        return Ok(values);
+        
+        return Ok();
     }
 }
