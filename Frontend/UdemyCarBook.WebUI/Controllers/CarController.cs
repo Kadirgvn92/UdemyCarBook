@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using UdemyCarBook.DTO.CarDTOs;
+using UdemyCarBook.DTO.CarPricingDTOs;
 using UdemyCarBook.DTO.ServiceDTOs;
 
 namespace UdemyCarBook.WebUI.Controllers;
@@ -16,11 +17,11 @@ public class CarController : Controller
     public async Task<IActionResult> Index()
     {
         var client = _httpClientFactory.CreateClient();
-        var responseMessage = await client.GetAsync("https://localhost:44323/api/Car/GetCarWithBrand");
+        var responseMessage = await client.GetAsync("https://localhost:44323/api/CarPricings");
         if (responseMessage.IsSuccessStatusCode)
         {
             var jsonData = await responseMessage.Content.ReadAsStringAsync();
-            var values = JsonConvert.DeserializeObject<List<ResultCarDTO>>(jsonData);
+            var values = JsonConvert.DeserializeObject<List<ResultGetCarPricingDto>>(jsonData);
             return View(values);
         }
         return View();
