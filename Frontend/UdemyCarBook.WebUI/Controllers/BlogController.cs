@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.VisualStudio.Web.CodeGenerators.Mvc;
 using Newtonsoft.Json;
 using UdemyCarBook.DTO.BlogDTOs;
 using UdemyCarBook.DTO.CarPricingDTOs;
@@ -23,6 +24,19 @@ public class BlogController : Controller
 			var values = JsonConvert.DeserializeObject<List<ResultAllBlogsWithAuthor>>(jsonData);
 			return View(values);
 		}
+		return View();
+	}
+
+	public async Task<IActionResult> BlogDetail(int id)
+	{
+		var client = _httpClientFactory.CreateClient();
+		var responseMessage = await client.GetAsync($"https://localhost:44323/api/Blogs/{id}");
+		if (responseMessage.IsSuccessStatusCode)
+		{
+            var jsonData = await responseMessage.Content.ReadAsStringAsync();
+            var values = JsonConvert.DeserializeObject<ResultAllBlogsWithAuthor>(jsonData);
+            return View(values);
+        }
 		return View();
 	}
 }
