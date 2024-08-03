@@ -77,10 +77,5 @@ public class CarController : ControllerBase
         var values = _getLast5CarsWithBrandQueryHandler.Handle();
         return Ok(values);
     }
-    [HttpGet("GetCarWithPricingList")]
-    public IActionResult GetCarWithPricingList()
-    {
-        
-        return Ok();
-    }
+   
 }
