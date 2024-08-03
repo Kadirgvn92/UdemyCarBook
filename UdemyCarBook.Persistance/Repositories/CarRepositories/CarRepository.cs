@@ -24,9 +24,9 @@ public class CarRepository : ICarRepository
         return values;
     }
 
-	public List<Car> GetCarsWithPricings()
+	public List<CarPricing> GetCarsWithPricings()
 	{
-        var values = _context.Cars.Include(x => x.Brands).Include(x => x.CarPricings).ToList();
+        var values = _context.CarPricings.Include(x => x.Car).ThenInclude(y => y.Brands).Include(x => x.Pricing).ToList();
         return values;
 	}
 
