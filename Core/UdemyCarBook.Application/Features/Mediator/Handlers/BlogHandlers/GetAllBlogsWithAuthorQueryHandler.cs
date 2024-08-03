@@ -30,8 +30,9 @@ public class GetAllBlogsWithAuthorQueryHandler : IRequestHandler<GetAllBlogsWith
 			CreatedDate = x.CreatedDate,
 			Title = x.Title,
 			AuthorName = x.Author.Name,
-			CategoryName = x.Category.Name
-
+			CategoryName = x.Category.Name,
+			Description = x.Description,
+			
 		}).ToList();
 	}
 }
