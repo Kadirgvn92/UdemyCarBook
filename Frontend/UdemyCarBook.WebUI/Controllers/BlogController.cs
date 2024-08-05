@@ -35,6 +35,7 @@ public class BlogController : Controller
 		{
             var jsonData = await responseMessage.Content.ReadAsStringAsync();
             var values = JsonConvert.DeserializeObject<ResultAllBlogsWithAuthor>(jsonData);
+			ViewBag.Id = id;
             return View(values);
         }
 		return View();
