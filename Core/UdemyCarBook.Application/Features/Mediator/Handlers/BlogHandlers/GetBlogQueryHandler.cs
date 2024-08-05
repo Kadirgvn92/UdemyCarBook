@@ -22,7 +22,7 @@ public class GetBlogQueryHandler : IRequestHandler<GetBlogQuery, List<GetBlogQue
 
     public async Task<List<GetBlogQueryResult>> Handle(GetBlogQuery request, CancellationToken cancellationToken)
     {
-        var values = await _blogRepository.GetAllAsync();
+        var values =  await _blogRepository.GetAllAsync();
         return values.Select(x => new GetBlogQueryResult
         {
             AuthorID = x.AuthorID,
@@ -30,7 +30,7 @@ public class GetBlogQueryHandler : IRequestHandler<GetBlogQuery, List<GetBlogQue
             CategoryID = x.CategoryID,
             CoverImageUrl = x.CoverImageUrl,
             CreatedDate = x.CreatedDate,
-            Title = x.Title 
+            Title = x.Title
         }).ToList();
     }
 }
