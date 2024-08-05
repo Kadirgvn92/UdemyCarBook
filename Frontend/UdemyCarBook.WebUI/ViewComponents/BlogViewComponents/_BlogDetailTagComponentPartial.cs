@@ -16,7 +16,7 @@ public class _BlogDetailTagComponentPartial : ViewComponent
     public async Task<IViewComponentResult> InvokeAsync(int id)
     {
         var client = _httpClientFactory.CreateClient();
-        var respond = await client.GetAsync($"https://localhost:44323/api/TagClouds/{id}");
+        var respond = await client.GetAsync($"https://localhost:44323/api/TagClouds/GetTagCloudByBlogId?id={id}");
         if (respond.IsSuccessStatusCode)
         {
             var jsonData = await respond.Content.ReadAsStringAsync();

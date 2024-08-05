@@ -11,12 +11,14 @@ using UdemyCarBook.Application.Interfaces;
 using UdemyCarBook.Application.Interfaces.BlogInterfaces;
 using UdemyCarBook.Application.Interfaces.CarInterfaces;
 using UdemyCarBook.Application.Interfaces.CarPricingInterfaces;
+using UdemyCarBook.Application.Interfaces.TagCloudInterfaces;
 using UdemyCarBook.Domain.Entities;
 using UdemyCarBook.Persistance.Context;
 using UdemyCarBook.Persistance.Repositories;
 using UdemyCarBook.Persistance.Repositories.BlogRepositories;
 using UdemyCarBook.Persistance.Repositories.CarPricingRepositories;
 using UdemyCarBook.Persistance.Repositories.CarRepositories;
+using UdemyCarBook.Persistance.Repositories.TagCloudRepositories;
 
 namespace UdemyCarBook.Persistance.Extensions;
 public static class Container 
@@ -28,6 +30,7 @@ public static class Container
         services.AddScoped(typeof(ICarRepository), typeof(CarRepository));
         services.AddScoped(typeof(IBlogRepository), typeof(BlogRepositories));
         services.AddScoped(typeof(ICarPricingRepository), typeof(CarPricingRepository));
+        services.AddScoped(typeof(ITagCloudRepository), typeof(TagCloudRepository));
         services.AddScoped<GetAboutByIdQueryHandler>();
         services.AddScoped<GetAboutQueryHandler>();
         
