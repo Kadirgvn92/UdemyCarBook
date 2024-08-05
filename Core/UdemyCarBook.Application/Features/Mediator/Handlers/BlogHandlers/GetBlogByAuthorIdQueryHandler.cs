@@ -9,7 +9,7 @@ using UdemyCarBook.Application.Features.Mediator.Results.BlogResults;
 using UdemyCarBook.Application.Interfaces.BlogInterfaces;
 
 namespace UdemyCarBook.Application.Features.Mediator.Handlers.BlogHandlers;
-public class GetBlogByAuthorIdQueryHandler : IRequestHandler<GetBlogByAuthorIdQuery, List<GetBlogByAuthorIdQueryResult>>
+public class GetBlogByAuthorIdQueryHandler : IRequestHandler<GetBlogByAuthorIdQuery, GetBlogByAuthorIdQueryResult>
 {
     private readonly IBlogRepository _blogRepository;
 
@@ -18,22 +18,22 @@ public class GetBlogByAuthorIdQueryHandler : IRequestHandler<GetBlogByAuthorIdQu
         _blogRepository = blogRepository;
     }
 
-    public async Task<List<GetBlogByAuthorIdQueryResult>> Handle(GetBlogByAuthorIdQuery request, CancellationToken cancellationToken)
+    public async Task<GetBlogByAuthorIdQueryResult> Handle(GetBlogByAuthorIdQuery request, CancellationToken cancellationToken)
     {
         var values = _blogRepository.GetBlogByAuthorId(request.Id);
-        return values.Select(x => new GetBlogByAuthorIdQueryResult
+        return new GetBlogByAuthorIdQueryResult
         {
-            AuthorID = x.AuthorID,
-            BlogID = x.BlogID,
-            CategoryID = x.CategoryID,
-            CoverImageUrl = x.CoverImageUrl,
-            CreatedDate = x.CreatedDate,
-            Title = x.Title,
-            AuthorName = x.Author.Name,
-            CategoryName = x.Category.Name,
-            Description = x.Description,
-            AuthorDescription = x.Author.Description,
-            AuthorImageUrl = x.Author.ImageUrl,
-        }).ToList();
+            AuthorID = values.AuthorID,
+            BlogID = values.BlogID,
+            CategoryID = values.CategoryID,
+            CoverImageUrl = values.CoverImageUrl,
+            CreatedDate = values.CreatedDate,
+            Title = values.Title,
+            AuthorName = values.Author.Name,
+            CategoryName = values.Category.Name,
+            Description = values.Description,
+            AuthorDescription = values.Author.Description,
+            AuthorImageUrl = values.Author.ImageUrl,
+        };
     }
 }

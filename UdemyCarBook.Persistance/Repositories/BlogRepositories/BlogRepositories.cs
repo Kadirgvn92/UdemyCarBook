@@ -24,9 +24,9 @@ public class BlogRepositories : IBlogRepository
         return values;
     }
 
-    public List<Blog> GetBlogByAuthorId(int id)
+    public Blog GetBlogByAuthorId(int id)
     {
-        var values = _context.Blogs.Include(x => x.Author).Include(x => x.Category).Where(x => x.BlogID == id).ToList();
+        var values = _context.Blogs.Include(x => x.Author).Include(x => x.Category).Where(x => x.BlogID == id).FirstOrDefault();
         return values;
     }
 

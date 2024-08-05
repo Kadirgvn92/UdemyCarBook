@@ -21,7 +21,7 @@ public class BlogController : Controller
 		if (responseMessage.IsSuccessStatusCode)
 		{
 			var jsonData = await responseMessage.Content.ReadAsStringAsync();
-			var values = JsonConvert.DeserializeObject<List<ResultAllBlogsWithAuthor>>(jsonData);
+			var values = JsonConvert.DeserializeObject<List<ResultAllBlogsWithAuthorDTO>>(jsonData);
 			return View(values);
 		}
 		return View();
@@ -30,11 +30,11 @@ public class BlogController : Controller
 	public async Task<IActionResult> BlogDetail(int id)
 	{
 		var client = _httpClientFactory.CreateClient();
-		var responseMessage = await client.GetAsync($"https://localhost:44323/api/Blogs/{id}");
+		var responseMessage = await client.GetAsync($"https://localhost:44323/api/Blogs/GetBlogByAuthorId?id={id}");
 		if (responseMessage.IsSuccessStatusCode)
 		{
             var jsonData = await responseMessage.Content.ReadAsStringAsync();
-            var values = JsonConvert.DeserializeObject<ResultAllBlogsWithAuthor>(jsonData);
+            var values = JsonConvert.DeserializeObject<ResultAllBlogsWithAuthorDTO>(jsonData);
 			ViewBag.Id = id;
             return View(values);
         }

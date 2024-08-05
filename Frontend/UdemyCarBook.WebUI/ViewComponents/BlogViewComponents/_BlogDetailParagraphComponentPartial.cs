@@ -6,8 +6,9 @@ namespace UdemyCarBook.WebUI.ViewComponents.BlogViewComponents;
 
 public class _BlogDetailParagraphComponentPartial : ViewComponent
 {
-   public IViewComponentResult Invoke()
+   public IViewComponentResult Invoke(int id)
     {
+        ViewBag.Id = id;    
         return View();
     }
 }

@@ -1,14 +1,13 @@
-﻿@model ResultAllBlogsWithAuthor
+﻿@model ResultAllBlogsWithAuthorDTO
 
 @{
     ViewData["Title"] = "Blog Detayı";
     Layout = "~/Views/UILayout/Index.cshtml";
 }
-
 <section class="ftco-section ftco-degree-bg">
     <div class="container">
         <div class="row">
-            @await Component.InvokeAsync("_BlogDetailParagraphComponentPartial")
+            @await Component.InvokeAsync("_BlogDetailParagraphComponentPartial", new { id = ViewBag.Id })
             
             <div class="col-md-4 sidebar ftco-animate">
 
