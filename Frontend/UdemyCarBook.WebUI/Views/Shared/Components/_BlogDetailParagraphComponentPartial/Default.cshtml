@@ -1,14 +1,16 @@
 ﻿
-
 <div class="col-md-8 ftco-animate">
-    <h2 class="mb-3">@Model.Title</h2>
+    
     
     <p>
-        <img src="/carbook-master/images/image_1.jpg" alt="" class="img-fluid">
+        <img src="@Model.CoverImageUrl" alt="" class="img-fluid">
     </p>
+    <br />
+    <h2 class="mb-3">@Model.Title</h2>
     <p>@Model.Description</p>
+    <br />
     <p>
-        <img src="/carbook-master/images/image_2.jpg" alt="" class="img-fluid">
+        <img src="/carbook-master/images/image_1.jpg" alt="" class="img-fluid">
     </p>
     
     @await Component.InvokeAsync("_BlogDetailCloudTagsComponentPartial")
