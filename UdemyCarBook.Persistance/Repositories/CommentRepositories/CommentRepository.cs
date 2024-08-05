@@ -26,7 +26,14 @@ public class CommentRepository<T> : IGenericRepository<Comment>
     public List<Comment> GetAll()
     {
       var values = _carBookContext.Comments.ToList();
-        return values;
+        return values.Select(x => new Comment
+        {
+            BlogID = x.BlogID,
+            CommentId = x.CommentId,
+            CreatedDate = x.CreatedDate,
+            Description = x.Description,
+            Name = x.Name,
+        }).ToList();
     }
 
     public Comment GetById(int id)
