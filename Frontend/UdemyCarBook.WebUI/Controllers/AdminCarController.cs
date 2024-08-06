@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
 using System.Text;
 using UdemyCarBook.DTO.AboutDTOs;
 using UdemyCarBook.DTO.BlogDTOs;
+using UdemyCarBook.DTO.BrandDTOs;
 using UdemyCarBook.DTO.CarDTOs;
 
 namespace UdemyCarBook.WebUI.Controllers;
@@ -42,16 +44,28 @@ public class AdminCarController : Controller
     }
     public async Task<IActionResult> Create(CreateCarDTO dTO)
     {
-        var resource = Directory.GetCurrentDirectory();
-        var extension = Path.GetExtension(dTO.Image.FileName);
-        var imagename = GenerateName() + extension;
-        var savelocation = Path.Combine(resource, "wwwroot/productImages", imagename);
+        var client1 = _httpClientFactory.CreateClient();
+        var responseMessage1 = await client1.GetAsync("https://localhost:44323/api/Brand");
+        var jsonData1 = await responseMessage1.Content.ReadAsStringAsync();
+        var values1 =  JsonConvert.DeserializeObject<List<ResultBrandDTO>>(jsonData1);
+        List<SelectListItem> brandvalues = (from x in values1
+                                            select new SelectListItem
+                                            {
+                                                Text = x.Name,
+                                                Value = x.BrandID.ToString(),
+                                            }).ToList();
+        ViewBag.BrandValues = brandvalues;  
 
-        using (var stream = new FileStream(savelocation, FileMode.Create))
-        {
-            await dTO.Image.CopyToAsync(stream);
-        }
-        dTO.CoverImageUrl = imagename;
+        //var resource = Directory.GetCurrentDirectory();
+        //var extension = Path.GetExtension(dTO.CoverImage.FileName);
+        //var imagename = GenerateName() + extension;
+        //var savelocation = Path.Combine(resource, "wwwroot/productImages", imagename);
+
+        //using (var stream = new FileStream(savelocation, FileMode.Create))
+        //{
+        //    await dTO.CoverImage.CopyToAsync(stream);
+        //}
+        //dTO.CoverImageUrl = imagename;
 
 
         var client = _httpClientFactory.CreateClient();
