@@ -30,6 +30,10 @@
                                             @Html.DropDownListFor(x => x.BrandID, (List<SelectListItem>)ViewBag.BrandValues, new {@class = "form-control"})
                                         </div>
                                         <div class="form-group p-1">
+                                            <label>Model</label>
+                                            <input type="text" class="form-control form-control-s" asp-for="Model" placeholder="Aracın model bilgisini girin">
+                                        </div>
+                                        <div class="form-group p-1">
                                             <label>KM</label>
                                             <input type="text" class="form-control form-control-s" asp-for="Km" placeholder="Aracın Km bilgisini girin">
                                         </div>
@@ -45,11 +49,28 @@
                                             <input type="text" class="form-control form-control-s" asp-for="Seats" placeholder="Aracın koltuk sayısını girin">
                                         </div>
                                         <div class="form-group p-1">
+                                            <label>Yakıt Tipi</label>
+                                            <select class="form-control" asp-for="Fuel">
+                                                <option value="Benzin">Benzin</option>
+                                                <option value="Dizel">Dizel</option>
+                                                <option value="Elektrik">Elektrik</option>
+                                                <option value="Hybrid">Hybrid</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group p-1">
                                             <label>Bagaj</label>
                                             <select class="form-control" asp-for="Luggage">
                                                 <option value="0">Bagaj yok</option>
                                                 <option value="1">Bagaj var</option>
                                             </select>
+                                        </div>
+                                        <div class="form-group p-1">
+                                            <label>Büyük Araç Resmi</label>
+                                            <input type="text" class="form-control form-control-s" asp-for="BigImageUrl" placeholder="Aracın büyük resmini girin">
+                                        </div>
+                                        <div class="form-group p-1">
+                                            <label>Cover Resmi</label>
+                                            <input type="text" class="form-control form-control-s" asp-for="CoverImageUrl" placeholder="Aracın cover resmini girin">
                                         </div>
                                         @* <div class="form-group p-1">
                                             <label>Araç Resmi</label>
@@ -60,7 +81,7 @@
                                             <input type="file" class="form-control form-control-s" asp-for="BigImage">
                                         </div> *@
                                         <div class="form-group p-1">
-                                            <button type="submit" class="btn btn-primary">Ürün Oluştur</button>
+                                            <button type="submit" class="btn btn-primary">Araç Oluştur</button>
                                         </div>
                                     </form>
                                 </div>

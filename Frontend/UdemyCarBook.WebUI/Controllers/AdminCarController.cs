@@ -42,36 +42,30 @@ public class AdminCarController : Controller
         }
         return View();
     }
-    public async Task<IActionResult> Create(CreateCarDTO dTO)
+
+    [HttpGet]
+    public async Task<IActionResult> Create()
     {
         var client1 = _httpClientFactory.CreateClient();
         var responseMessage1 = await client1.GetAsync("https://localhost:44323/api/Brand");
         var jsonData1 = await responseMessage1.Content.ReadAsStringAsync();
-        var values1 =  JsonConvert.DeserializeObject<List<ResultBrandDTO>>(jsonData1);
+        var values1 = JsonConvert.DeserializeObject<List<ResultBrandDTO>>(jsonData1);
         List<SelectListItem> brandvalues = (from x in values1
                                             select new SelectListItem
                                             {
                                                 Text = x.Name,
                                                 Value = x.BrandID.ToString(),
                                             }).ToList();
-        ViewBag.BrandValues = brandvalues;  
-
-        //var resource = Directory.GetCurrentDirectory();
-        //var extension = Path.GetExtension(dTO.CoverImage.FileName);
-        //var imagename = GenerateName() + extension;
-        //var savelocation = Path.Combine(resource, "wwwroot/productImages", imagename);
-
-        //using (var stream = new FileStream(savelocation, FileMode.Create))
-        //{
-        //    await dTO.CoverImage.CopyToAsync(stream);
-        //}
-        //dTO.CoverImageUrl = imagename;
-
-
+        ViewBag.BrandValues = brandvalues;
+        return View();
+    }
+    public async Task<IActionResult> Create(CreateCarDTO dTO)
+    {
+      
         var client = _httpClientFactory.CreateClient();
         var jsonData = JsonConvert.SerializeObject(dTO);
         StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-        var responseMessage = await client.PostAsync("https://localhost:44323/api/Car", stringContent);
+        var responseMessage = await client.PostAsync("https://localhost:44323/api/Car/", stringContent);
         if (responseMessage.IsSuccessStatusCode)
         {
             return RedirectToAction("Index");
