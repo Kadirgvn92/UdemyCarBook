@@ -42,9 +42,7 @@ public class AdminCarController : Controller
         }
         return View();
     }
-
-    [HttpGet]
-    public async Task<IActionResult> Create()
+    public async Task<List<SelectListItem>> GetBrands()
     {
         var client1 = _httpClientFactory.CreateClient();
         var responseMessage1 = await client1.GetAsync("https://localhost:44323/api/Brand");
@@ -56,7 +54,13 @@ public class AdminCarController : Controller
                                                 Text = x.Name,
                                                 Value = x.BrandID.ToString(),
                                             }).ToList();
-        ViewBag.BrandValues = brandvalues;
+       
+        return brandvalues;
+    }
+    [HttpGet]
+    public async Task<IActionResult> Create()
+    {
+        ViewBag.BrandValues = await GetBrands();
         return View();
     }
     [HttpPost]
@@ -80,6 +84,21 @@ public class AdminCarController : Controller
         if (responseMessage.IsSuccessStatusCode)
         {
             return RedirectToAction("Index");   
+        }
+        return View();
+    }
+    [HttpGet]
+    public async Task<IActionResult> Update(int id)
+    {
+        ViewBag.BrandValues = await GetBrands();
+
+        var client = _httpClientFactory.CreateClient();
+        var responseMessage = await client.GetAsync($"https://localhost:44323/api/Car/{id}");
+        if (responseMessage.IsSuccessStatusCode)
+        {
+            var jsonData = await responseMessage.Content.ReadAsStringAsync();
+            var values = JsonConvert.DeserializeObject<UpdateCarDTO>(jsonData);
+            return View(values);
         }
         return View();
     }
