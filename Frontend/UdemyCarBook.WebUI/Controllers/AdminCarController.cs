@@ -59,6 +59,7 @@ public class AdminCarController : Controller
         ViewBag.BrandValues = brandvalues;
         return View();
     }
+    [HttpPost]
     public async Task<IActionResult> Create(CreateCarDTO dTO)
     {
       
@@ -69,6 +70,16 @@ public class AdminCarController : Controller
         if (responseMessage.IsSuccessStatusCode)
         {
             return RedirectToAction("Index");
+        }
+        return View();
+    }
+    public async Task<IActionResult> Delete(int id)
+    {
+        var client = _httpClientFactory.CreateClient();
+        var responseMessage = await client.DeleteAsync($"https://localhost:44323/api/Car?id={id}");
+        if (responseMessage.IsSuccessStatusCode)
+        {
+            return RedirectToAction("Index");   
         }
         return View();
     }
