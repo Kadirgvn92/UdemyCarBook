@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Humanizer;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
 using System.Text;
@@ -99,6 +100,19 @@ public class AdminCarController : Controller
             var jsonData = await responseMessage.Content.ReadAsStringAsync();
             var values = JsonConvert.DeserializeObject<UpdateCarDTO>(jsonData);
             return View(values);
+        }
+        return View();
+    }
+    [HttpPost]
+    public async Task<IActionResult> Update(UpdateCarDTO updateCarDTO)
+    {
+        var client = _httpClientFactory.CreateClient();
+        var jsonData = JsonConvert.SerializeObject(updateCarDTO);
+        StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
+        var responseMessage = await client.PutAsync("https://localhost:44323/api/Car/", stringContent);
+        if (responseMessage.IsSuccessStatusCode)
+        {
+            return RedirectToAction("Index");
         }
         return View();
     }
