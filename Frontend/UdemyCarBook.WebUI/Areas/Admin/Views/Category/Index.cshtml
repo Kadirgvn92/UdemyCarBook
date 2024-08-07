@@ -1,7 +1,6 @@
 ﻿@{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
-    int count = 0;
 }
 
 <div class="content-wrapper">
@@ -11,28 +10,27 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <div class="card-title">Yazar Alanı</div>
+                            <div class="card-title">Blog Kategorileri Alanı</div>
                         </div>
                         <div class="card-body">
                             <div class="card-body p-0">
                                 <div class="mailbox-controls">
                                     <div class="card-sub">
-                                        Yazarları bu sayfada görüntüleyebilir veya güncelleyebilirsiniz.
+                                        Blog Kategorilerini bu sayfada görüntüleyebilir veya güncelleyebilirsiniz.
                                     </div>
                                     <br />
                                     <div>
-                                        <a href="/Admin/Author/Create/" class="btn btn-primary">Yeni Yazar Oluştur</a>
+                                        <a href="/Admin/Category/Create/" class="btn btn-primary">Yeni Kategori Oluştur</a>
                                     </div>
                                 </div>
-                                <table id="authorsTable" class="table table-striped">
+                                <table id="categoryTable" class="table table-striped">
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th >Ad Soyad</th>
-                                            <th >Açıklama</th>
+                                            <th>Kategori Adı</th>
                                             <th class="text-center">Sil</th>
                                             <th class="text-center">Güncelle</th>
-                                            <th class="text-center">Yazarın Blogları</th>
+                                            <th class="text-center">Kategoriye Ait Blogları</th>
                                         </tr>
                                     </thead>
                                     <tbody class="border-top"></tbody>
@@ -52,9 +50,9 @@
 
     <script>
         $(document).ready(function () {
-            $('#authorsTable').DataTable({
+            $('#categoryTable').DataTable({
                 ajax: {
-                    url: '/Admin/Author/GetAuthors',
+                    url: '/Admin/Category/GetCategories',
                     type: 'GET',
                     dataSrc: function (json) {
                         // Gelen veriyi konsola yazdır
@@ -66,18 +64,19 @@
                     {
                         data: null,
                         className: 'text-center',
+                        width:'50px',
                         render: function (data, type, row, meta) {
                             return meta.row + 1; // Satır numarasını döndür (1 tabanlı)
                         }
                     },
-                    { data: 'name'},
-                    { data: 'description' },
+                    { data: 'name' },
+                   
                     {
                         data: null,
                         className: 'text-center',
                         width: '150px',
                         render: function (data, type, row, meta) {
-                            return '<a href="/Admin/Author/Delete/' + row.authorID + '" class="btn btn-danger btn-sm">Sil</a>';
+                            return '<a href="/Admin/Category/Delete/' + row.categoryID + '" class="btn btn-danger ">Sil</a>';
                         }
                     },
                     {
@@ -85,15 +84,15 @@
                         className: 'text-center',
                         width: '150px',
                         render: function (data, type, row, meta) {
-                            return '<a href="/Admin/Author/Update/' + row.authorID + '" class="btn btn-info btn-sm">Güncelle</a>';
+                            return '<a href="/Admin/Category/Update/' + row.categoryID + '" class="btn btn-info ">Güncelle</a>';
                         }
                     },
                     {
                         data: null,
                         className: 'text-center',
-                        width:'200px',
+                        width: '300px',
                         render: function (data, type, row, meta) {
-                            return '<a href="/Admin/Author/#/' + row.authorID + '" class="btn btn-secondary btn-sm">Yazarın Blogları</a>';
+                            return '<a href="/Admin/Category/#/' + row.categoryID + '" class="btn btn-secondary">Kategoriye Ait Blogları</a>';
                         }
                     }
                 ],
