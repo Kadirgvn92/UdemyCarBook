@@ -1,0 +1,76 @@
+﻿@using UdemyCarBook.DTO.BannerDTOs
+
+@model List<ResultBannerDto>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    int count = 0;
+}
+
+<div class="content-wrapper">
+    <div class="content mt-0 p-2">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Sayfa Banner Alanı</div>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-body p-0">
+                                <div class="mailbox-controls">
+                                    <div class="card-sub">
+                                        Banner alanını bu sayfada görüntüleyebilir veya güncelleyebilirsiniz.
+                                    </div>
+                                    
+                                </div>
+
+                                <table class="table align-items-center table-striped mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-uppercase text-primary text-sm font-weight-bolder">#</th>
+                                            <th class="text-uppercase text-primary text-sm font-weight-bolder ">Başlık</th>
+                                            <th class="text-uppercase text-primary text-sm font-weight-bolder ">Video Açıklama</th>
+                                            <th class="text-uppercase text-primary text-sm font-weight-bolder ">Video URL</th>
+                                            <th class="text-uppercase text-primary text-sm font-weight-bolder text-center">Sil</th>
+                                            <th class="text-uppercase text-primary text-sm font-weight-bolder text-center">Güncelle</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="border-top">
+                                        @foreach (var item in Model)
+                                        {
+                                            count++;
+                                            <tr>
+                                                <td class="align-middle">
+                                                    <span class="text-s  mb-0">@count</span>
+                                                </td>
+
+                                                <td class="align-middle">
+                                                    <span class="text-s  mb-0">@item.Title</span>
+                                                </td>
+                                                <td class="align-middle">
+                                                    <span class="text-s  mb-0">@item.VideoDescription</span>
+                                                </td>
+                                                <td class="align-middle">
+                                                    <span class="text-s  mb-0">@item.Video</span>
+                                                </td>
+                                                <td width="100px" class="align-middle text-center">
+                                                    <a href="/Admin/Banner/Delete/@item.BannerID" class="btn bg-gradient-warning ">Sil</a>
+                                                </td>
+                                                <td width="100px" class="align-middle text-center">
+                                                    <a href="/Admin/Banner/Update/@item.BannerID" class="btn bg-gradient-info ">Güncelle</a>
+                                                </td>
+                                               
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
