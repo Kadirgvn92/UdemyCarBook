@@ -1,0 +1,87 @@
+﻿@model List<ResultCarDTO>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="content-wrapper">
+    <div class="content mt-0 p-2">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Araçlar</div>
+                        </div>
+                        <div class="card-body">
+
+                            <div class="card-body p-0">
+                                <div class="mailbox-controls">
+                                    <div class="card-sub">
+                                        Araçları bu sayfada görüntüleyebilir veya güncelleyebilirsiniz.
+                                    </div>
+                                    <br />
+                                    <div>
+                                        <a href="/AdminCar/Create/" class="btn btn-primary">Yeni Ürün Oluştur</a>
+                                    </div>
+                                </div>
+                               
+                                <table class="table align-items-center table-striped mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-uppercase text-primary text-sm font-weight-bolder text-center "> Araç Resmi</th>
+                                            <th class="text-uppercase text-primary text-sm font-weight-bolder ">Marka</th>
+                                            <th class="text-uppercase text-primary text-sm font-weight-bolder ">Model</th>
+                                            <th class="text-uppercase text-primary text-sm font-weight-bolder ">Vites</th>
+                                            <th class="text-uppercase text-primary text-sm font-weight-bolder ">Km</th>
+                                            <th class="text-uppercase text-primary text-sm font-weight-bolder text-center">Sil</th>
+                                            <th class="text-uppercase text-primary text-sm font-weight-bolder text-center">Güncelle</th>
+                                            <th class="text-uppercase text-primary text-sm font-weight-bolder text-center">Detaylar</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="border-top">
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr>
+                                                <td class="align-middle" width="150px">
+                                                    <div>
+                                                        <img src="@item.CoverImageUrl" class="rounded me-3" style="width:150px;height:100px;border-radius:10px">
+                                                    </div>
+                                                </td>
+
+                                                <td class="align-middle">
+                                                    <span class="text-s  mb-0">@item.BrandName</span>
+                                                </td>
+                                                <td class="align-middle">
+                                                    <span class="text-s  mb-0">@item.Model</span>
+                                                </td>
+                                                <td class="align-middle">
+                                                    <span class="text-s  mb-0">@item.Transmission</span>
+                                                </td>
+                                                <td class="align-middle">
+                                                    <span class="text-s  mb-0">@item.Km</span>
+                                                </td>
+                                               
+                                                <td width="100px" class="align-middle text-center">
+                                                    <a href="/AdminCar/Delete/@item.CarID" class="btn bg-gradient-warning ">Sil</a>
+                                                </td>
+                                                <td width="100px" class="align-middle text-center">
+                                                    <a href="/AdminCar/Update/@item.CarID" class="btn bg-gradient-info ">Güncelle</a>
+                                                </td>
+                                                <td width="100px" class="align-middle text-center">
+                                                    <a href="/AdminCar/Detail/@item.CarID" class="btn bg-gradient-secondary ">Detaylar</a>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

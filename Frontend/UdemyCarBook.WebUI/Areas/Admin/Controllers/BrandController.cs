@@ -2,14 +2,17 @@
 using Newtonsoft.Json;
 using System.Text;
 using UdemyCarBook.DTO.BrandDTOs;
-using UdemyCarBook.DTO.FeatureDTOs;
 
-namespace UdemyCarBook.WebUI.Controllers;
-public class AdminBrandController : Controller
+namespace UdemyCarBook.WebUI.Areas.Admin.Controllers;
+
+[Area("Admin")]
+[Route("Admin/[controller]/[action]/{id?}")]
+
+public class BrandController : Controller
 {
     private readonly IHttpClientFactory _httpClientFactory;
 
-    public AdminBrandController(IHttpClientFactory httpClientFactory)
+    public BrandController(IHttpClientFactory httpClientFactory)
     {
         _httpClientFactory = httpClientFactory;
     }

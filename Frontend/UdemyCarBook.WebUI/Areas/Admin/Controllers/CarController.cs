@@ -1,19 +1,20 @@
-﻿using Humanizer;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
 using System.Text;
-using UdemyCarBook.DTO.AboutDTOs;
-using UdemyCarBook.DTO.BlogDTOs;
 using UdemyCarBook.DTO.BrandDTOs;
 using UdemyCarBook.DTO.CarDTOs;
 
-namespace UdemyCarBook.WebUI.Controllers;
-public class AdminCarController : Controller
+namespace UdemyCarBook.WebUI.Areas.Admin.Controllers;
+
+
+[Area("Admin")]
+[Route("Admin/[controller]/[action]/{id?}")]
+public class CarController : Controller
 {
     private readonly IHttpClientFactory _httpClientFactory;
 
-    public AdminCarController(IHttpClientFactory httpClientFactory)
+    public CarController(IHttpClientFactory httpClientFactory)
     {
         _httpClientFactory = httpClientFactory;
     }
@@ -55,7 +56,7 @@ public class AdminCarController : Controller
                                                 Text = x.Name,
                                                 Value = x.BrandID.ToString(),
                                             }).ToList();
-       
+
         return brandvalues;
     }
     [HttpGet]
@@ -67,7 +68,7 @@ public class AdminCarController : Controller
     [HttpPost]
     public async Task<IActionResult> Create(CreateCarDTO dTO)
     {
-      
+
         var client = _httpClientFactory.CreateClient();
         var jsonData = JsonConvert.SerializeObject(dTO);
         StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
@@ -84,7 +85,7 @@ public class AdminCarController : Controller
         var responseMessage = await client.DeleteAsync($"https://localhost:44323/api/Car?id={id}");
         if (responseMessage.IsSuccessStatusCode)
         {
-            return RedirectToAction("Index");   
+            return RedirectToAction("Index");
         }
         return View();
     }
