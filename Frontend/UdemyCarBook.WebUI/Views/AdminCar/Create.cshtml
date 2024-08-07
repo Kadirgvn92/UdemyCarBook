@@ -1,8 +1,7 @@
-﻿
-@model CreateCarDTO
+﻿@model CreateCarDTO
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Update";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
@@ -13,7 +12,7 @@
                 <div class="card-header p-3">
                     <div class="row">
                         <div class="col-md-8 d-flex align-items-center">
-                            <h6 class="mb-0 text-dark">Araç Ekleme Ekranı</h6>
+                            <h6 class="mb-0 text-dark">Araç Güncelleme Ekranı</h6>
                         </div>
                     </div>
                 </div>
@@ -24,10 +23,9 @@
                                 <div class="table-responsive-sm m-2">
                                     <!-- table section -->
                                     <form method="post" enctype="multipart/form-data">
-
                                         <div class="form-group p-1">
                                             <label for="Brand">Marka</label>
-                                            @Html.DropDownListFor(x => x.BrandID, (List<SelectListItem>)ViewBag.BrandValues, new {@class = "form-control"})
+                                            @Html.DropDownListFor(x => x.BrandID, (List<SelectListItem>)ViewBag.BrandValues, new { @class = "form-control" })
                                         </div>
                                         <div class="form-group p-1">
                                             <label>Model</label>
@@ -72,14 +70,6 @@
                                             <label>Cover Resmi</label>
                                             <input type="text" class="form-control form-control-s" asp-for="CoverImageUrl" placeholder="Aracın cover resmini girin">
                                         </div>
-                                        @* <div class="form-group p-1">
-                                            <label>Araç Resmi</label>
-                                            <input type="file" class="form-control form-control-s" asp-for="CoverImage">
-                                        </div>
-                                        <div class="form-group p-1">
-                                            <label>Büyük Araç Resmi</label>
-                                            <input type="file" class="form-control form-control-s" asp-for="BigImage">
-                                        </div> *@
                                         <div class="form-group p-1">
                                             <button type="submit" class="btn btn-primary">Araç Oluştur</button>
                                         </div>
@@ -93,5 +83,3 @@
         </div>
     </div>
 </div>
-
-

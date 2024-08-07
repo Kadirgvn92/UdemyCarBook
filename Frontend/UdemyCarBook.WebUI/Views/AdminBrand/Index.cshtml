@@ -1,0 +1,75 @@
+﻿@using UdemyCarBook.DTO.BrandDTOs
+
+@model List<ResultBrandDTO>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    int count = 0;
+}
+
+
+<div class="content-wrapper">
+    <div class="content mt-0 p-2">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Araç Markaları</div>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-body p-0">
+                                <div class="mailbox-controls">
+                                    <div class="card-sub">
+                                        Araçların markalarını bu sayfada görüntüleyebilir veya güncelleyebilirsiniz.
+                                    </div>
+                                    <br />
+                                    <div>
+                                        <a href="/AdminBrand/Create/" class="btn btn-primary">Yeni Marka Oluştur</a>
+                                    </div>
+                                </div>
+
+                                <table class="table align-items-center table-striped mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-uppercase text-primary text-sm font-weight-bolder">#</th>
+                                            <th class="text-uppercase text-primary text-sm font-weight-bolder ">Marka Adı</th>
+                                            <th class="text-uppercase text-primary text-sm font-weight-bolder text-center">Sil</th>
+                                            <th class="text-uppercase text-primary text-sm font-weight-bolder text-center">Güncelle</th>
+                                            <th class="text-uppercase text-primary text-sm font-weight-bolder text-center">Detay</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="border-top">
+                                        @foreach (var item in Model)
+                                        {
+                                            count++;
+                                            <tr>
+                                                <td class="align-middle">
+                                                    <span class="text-s  mb-0">@count</span>
+                                                </td>
+
+                                                <td class="align-middle">
+                                                    <span class="text-s  mb-0">@item.Name</span>
+                                                </td>
+                                                <td width="100px" class="align-middle text-center">
+                                                    <a href="/AdminBrand/Delete/@item.BrandID" class="btn bg-gradient-warning ">Sil</a>
+                                                </td>
+                                                <td width="100px" class="align-middle text-center">
+                                                    <a href="/AdminBrand/Update/@item.BrandID" class="btn bg-gradient-info ">Güncelle</a>
+                                                </td>
+                                                <td width="300px" class="align-middle text-center">
+                                                    <a href="/Car/Index/@item.BrandID" class="btn bg-gradient-secondary ">Markaya ait olan araçlar</a>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
