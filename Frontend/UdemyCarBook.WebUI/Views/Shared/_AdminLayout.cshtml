@@ -7,6 +7,8 @@
 
 @await Component.InvokeAsync("_AdminHeaderPartial")
 
+@RenderSection("styles", false)
+
 <body class="hold-transition sidebar-mini layout-fixed">
 
     <div class="wrapper">
@@ -26,6 +28,8 @@
     </div>
 
     @await Component.InvokeAsync("_AdminScriptPartial")
+
+    @RenderSection("Scripts", false)
 
 </body>
 </html>
