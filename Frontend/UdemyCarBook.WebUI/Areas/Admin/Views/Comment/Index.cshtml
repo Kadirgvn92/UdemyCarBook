@@ -1,0 +1,58 @@
+﻿@using UdemyCarBook.DTO.CommentDTOs
+
+@model List<ResultCommentDTO>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="content-wrapper">
+    <div class="content mt-0 p-2">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">@ViewBag.Blog Yorumları</div>
+                        </div>
+                    </div>
+                </div>
+                @foreach (var item in Model)
+                {
+                    <div class="col-md-3">
+                        <div class="card card-light">
+                            <div class="card-header">
+                                <h3 class="card-title">@item.Name</h3>
+
+                                <div class="card-tools">
+                                    <button type="button" class="btn btn-tool" data-card-widget="card-refresh" data-source="widgets.html" data-source-selector="#card-refresh-content" data-load-on-init="false">
+                                        <i class="fas fa-sync-alt"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-tool" data-card-widget="maximize">
+                                        <i class="fas fa-expand"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-body" style="display: block;">
+                                @item.Description<br />
+                                <small> @item.CreatedDate.ToShortDateString()</small>
+                            </div>
+                            <div class="card-footer" style="display: block;">
+                               <a href="/Admin/Comment/Delete/@item.CommentId" class="btn btn-danger">Yorumu Kaldır</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+
