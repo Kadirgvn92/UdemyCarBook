@@ -44,5 +44,10 @@ public class CommentController : ControllerBase
         _repository.Update(comment);
         return Ok("Comment updated successfully");
     }
-
+    [HttpGet("CommentListByBlog")]
+    public IActionResult CommentListByBlog(int id)
+    {
+        var values = _repository.GetCommentsByBlogId(id);
+        return Ok(values);
+    }
 }

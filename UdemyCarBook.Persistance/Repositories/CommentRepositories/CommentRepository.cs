@@ -42,6 +42,12 @@ public class CommentRepository<T> : IGenericRepository<Comment>
         return values;
     }
 
+    public List<Comment> GetCommentsByBlogId(int id)
+    {
+      return _carBookContext.Set<Comment>().Where(x => x.BlogID == id).ToList();    
+
+    }
+
     public void Remove(Comment item)
     {
         _carBookContext.Comments.Remove(item);
@@ -53,4 +59,8 @@ public class CommentRepository<T> : IGenericRepository<Comment>
        _carBookContext.Comments.Update(item);
         _carBookContext.SaveChanges();
     }
+
+
+
+
 }
