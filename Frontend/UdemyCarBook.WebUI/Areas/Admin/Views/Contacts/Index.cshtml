@@ -1,0 +1,112 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    int count = 0;
+}  
+<div class="content-wrapper">
+    <div class="content mt-0 p-2">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Gelen Mesajlar Alanı</div>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-body p-0">
+                                <div class="mailbox-controls">
+                                    <div class="card-sub">
+                                        Gelen mesajlar bu sayfada görüntüleyebilir veya güncelleyebilirsiniz.
+                                    </div>
+                                </div>
+                                <table id="table" class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Ad Soyad</th>
+                                            <th>Mail Adresi</th>
+                                            <th>Konu</th>
+                                            <th>Mesaj</th>
+                                            <th>Gönderme Tarihi</th>
+                                            <th class="text-center">Sil</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="border-top"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+
+    @await Component.InvokeAsync("_AdminDatatableScriptPartial")
+
+    <script>
+        $(document).ready(function () {
+            $('#table').DataTable({
+                ajax: {
+                    url: '/Admin/Contacts/GetContacts',
+                    type: 'GET',
+                    dataSrc: function (json) {
+                        // Gelen veriyi konsola yazdır
+                        console.log(json);
+                        return json; // Veriyi tabloya ekle
+                    }
+                },
+                columns: [
+                    {
+                        data: null,
+                        className: 'text-center',
+                        render: function (data, type, row, meta) {
+                            return meta.row + 1; // Satır numarasını döndür (1 tabanlı)
+                        }
+                    },
+                    { data: 'name' },
+                    { data: 'email' },
+                    { data: 'subject' },
+                    { data: 'message' },
+                    {
+                        data: 'sendDate',
+                        render: function (data, type, row) {
+                            if (type === 'display' || type === 'filter') {
+                                let date = new Date(data);
+                                let options = {
+                                    weekday: 'long',
+                                    month: 'short',
+                                    year: 'numeric',
+                                    hour: '2-digit',
+                                    minute: '2-digit'
+                                };
+                                return date.toLocaleDateString('tr-TR', options).replace('.', '');
+                            }
+                            return data;
+                        }
+                    },
+                    {
+                        data: null,
+                        className: 'text-center',
+                        width: '150px',
+                        render: function (data, type, row, meta) {
+                            return '<a href="/Admin/Contacts/Delete/' + row.contactID + '" class="btn btn-danger btn-sm">Sil</a>';
+                        }
+                    }
+                ],
+                paging: true,
+                lengthChange: true,
+                searching: true,
+                ordering: true,
+                info: true,
+                autoWidth: true,
+                responsive: true,
+                dom: 'Bfrtip',
+                language: dataTableLanguageSettings,
+                buttons: ["copy", "csv", "excel", "pdf", "print", "colvis"]
+            });
+        });
+    </script>
+}
