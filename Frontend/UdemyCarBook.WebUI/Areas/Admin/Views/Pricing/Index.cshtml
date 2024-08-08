@@ -1,0 +1,71 @@
+﻿@using UdemyCarBook.DTO.PricingDTOs
+
+@model List<ResultPricingDTO>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    int count = 0;
+}
+
+<div class="content-wrapper">
+    <div class="content mt-0 p-2">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Fiyatlandırma Alanı</div>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-body p-0">
+                                <div class="mailbox-controls">
+                                    <div class="card-sub">
+                                        Fiyatlandırmayı bu sayfada görüntüleyebilir veya güncelleyebilirsiniz.
+                                    </div>
+                                    <br />
+                                    <div>
+                                        <a href="/Admin/Pricing/Create/" class="btn btn-primary">Yeni Ödeme Türü Oluştur</a>
+                                    </div>
+                                </div>
+
+                                <table class="table align-items-center table-striped mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-uppercase text-primary text-sm font-weight-bolder">#</th>
+                                            <th class="text-uppercase text-primary text-sm font-weight-bolder ">Periyot Adı</th>
+                                            <th class="text-uppercase text-primary text-sm font-weight-bolder text-center">Sil</th>
+                                            <th class="text-uppercase text-primary text-sm font-weight-bolder text-center">Güncelle</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="border-top">
+                                        @foreach (var item in Model)
+                                        {
+                                            count++;
+                                            <tr>
+                                                <td class="align-middle">
+                                                    <span class="text-s  mb-0">@count</span>
+                                                </td>
+
+                                                <td class="align-middle">
+                                                    <span class="text-s  mb-0">@item.Name</span>
+                                                </td>
+                                                <td width="100px" class="align-middle text-center">
+                                                    <a href="/Admin/Pricing/Delete/@item.PricingID" class="btn bg-gradient-warning ">Sil</a>
+                                                </td>
+                                                <td width="100px" class="align-middle text-center">
+                                                    <a href="/Admin/Pricing/Update/@item.PricingID" class="btn bg-gradient-info ">Güncelle</a>
+                                                </td>
+
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
