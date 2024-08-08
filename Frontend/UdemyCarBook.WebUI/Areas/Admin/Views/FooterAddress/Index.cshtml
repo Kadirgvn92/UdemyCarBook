@@ -1,0 +1,143 @@
+﻿@model List<ResultFooterAddressDto>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    int count = 0;
+}
+
+<div class="content-wrapper">
+    <div class="content mt-0 p-2">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Sayfa Footer Adres Alanı</div>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-body p-0">
+                                <div class="mailbox-controls">
+                                    <div class="card-sub">
+                                        Adres alanını bu sayfada görüntüleyebilir veya güncelleyebilirsiniz.
+                                    </div>
+
+                                </div>
+
+                                <table class="table align-items-center table-striped mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-uppercase text-primary text-sm font-weight-bolder ">Açıklama</th>
+                                            <th class="text-uppercase text-primary text-sm font-weight-bolder ">Telefon</th>
+                                            <th class="text-uppercase text-primary text-sm font-weight-bolder ">Mail Adresi</th>
+                                            <th class="text-uppercase text-primary text-sm font-weight-bolder text-center">Güncelle</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="border-top">
+                                        @foreach (var item in Model)
+                                        {
+                                            count++;
+                                            <tr>
+
+                                                <td class="align-middle">
+                                                    <span class="text-s  mb-0">@item.Description</span>
+                                                </td>
+                                                <td class="align-middle">
+                                                    <span class="text-s  mb-0">@item.Phone</span>
+                                                </td>
+                                                <td class="align-middle">
+                                                    <span class="text-s  mb-0">@item.Email</span>
+                                                </td>
+                                                <td width="100px" class="align-middle text-center">
+                                                    <a href="#" class="btn bg-gradient-info btn-guncelle" data-id="@item.FooterAddressID">Güncelle</a>
+                                                </td>
+
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Güncelleme Modal -->
+<div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="updateModalLabel">Adres Güncelle</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="updateForm" method="post" action="/Admin/FooterAddress/Update">
+                    <input type="hidden" id="FooterAddressID" name="FooterAddressID" value="" />
+                    <div class="form-group">
+                        <label for="Description">Açıklama</label>
+                        <input type="text" class="form-control" id="Description" name="Description" value="" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="Description">Açıklama</label>
+                        <input type="text" class="form-control" id="Address" name="Address" value="" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="Phone">Telefon</label>
+                        <input type="text" class="form-control" id="Phone" name="Phone" value="" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="Email">Mail Adresi</label>
+                        <input type="email" class="form-control" id="Email" name="Email" value="" required />
+                    </div>
+                    <button type="submit" class="btn bg-gradient-info">Güncelle</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script>
+
+      
+
+        $(document).ready(function () {
+            $(document).ready(function () {
+                $('.btn-guncelle').on('click', function (e) {
+                    e.preventDefault();
+
+                    // Güncelle butonuna tıklanan satırın ID'sini al
+                    var footerAddressID = $(this).data('id');
+
+                    // AJAX isteği ile ilgili ID'ye ait verileri getir
+                    $.ajax({
+                        url: '/Admin/FooterAddress/GetFooterAddress/' + footerAddressID,
+                        type: 'GET',
+                        success: function (data) {
+                            // Gelen JSON verisini inputlara yerleştir
+                            $('#FooterAddressID').val(data.footerAddressID);
+                            $('#Description').val(data.description);
+                            $('#Address').val(data.address);
+                            $('#Phone').val(data.phone);
+                            $('#Email').val(data.email);
+
+                            // Modalı aç
+                            $('#updateModal').modal('show');
+                        },
+                        error: function () {
+                            alert('Veri getirilirken bir hata oluştu.');
+                        }
+                    });
+                });
+            });
+
+           
+        });
+    </script>
+
+}
