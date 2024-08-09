@@ -18,6 +18,12 @@ public class CarRepository : ICarRepository
         _context = context;
     }
 
+    public int GetCarCount()
+    {
+        var values = _context.Cars.Count();
+        return values;
+    }
+
     public List<Car> GetCarsListWithBrand()
     {
         var values = _context.Cars.Include(x => x.Brands).ToList();
