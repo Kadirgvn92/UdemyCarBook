@@ -21,4 +21,5 @@ public interface IStatisticRepository
     int GetDailyAvgRentPrice();
     int GetHourlyAvgRentPrice();
     int GetMontlyAvgRentPrice();
+    int GetServiceCount();
 }

@@ -9,20 +9,20 @@ using UdemyCarBook.Application.Features.Mediator.Results.StatisticResults;
 using UdemyCarBook.Application.Interfaces.StatisticInterfaces;
 
 namespace UdemyCarBook.Application.Features.Mediator.Handlers.StatisticHandlers;
-public class GetAuthorCountQueryHandler : IRequestHandler<GetAuthorCountQuery, GetAuthorCountQueryResult>
+public class GetMostExpensiveCarQueryHandler : IRequestHandler<GetMostExpensiveCarQuery, GetMostExpensiveCarQueryResult>
 {
     private readonly IStatisticRepository _statisticRepository;
 
-    public GetAuthorCountQueryHandler(IStatisticRepository statisticRepository)
+    public GetMostExpensiveCarQueryHandler(IStatisticRepository statisticRepository)
     {
         _statisticRepository = statisticRepository;
     }
 
-    public async Task<GetAuthorCountQueryResult> Handle(GetAuthorCountQuery request, CancellationToken cancellationToken)
+    public async Task<GetMostExpensiveCarQueryResult> Handle(GetMostExpensiveCarQuery request, CancellationToken cancellationToken)
     {
-        return new GetAuthorCountQueryResult
+        return new GetMostExpensiveCarQueryResult
         {
-            Count = _statisticRepository.GetAuhtorCount()
+            Car = _statisticRepository.GetMostExpensiveCar()
         };
     }
 }

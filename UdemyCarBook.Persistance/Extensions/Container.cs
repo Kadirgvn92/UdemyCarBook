@@ -10,6 +10,7 @@ using UdemyCarBook.Application.Interfaces;
 using UdemyCarBook.Application.Interfaces.BlogInterfaces;
 using UdemyCarBook.Application.Interfaces.CarInterfaces;
 using UdemyCarBook.Application.Interfaces.CarPricingInterfaces;
+using UdemyCarBook.Application.Interfaces.StatisticInterfaces;
 using UdemyCarBook.Application.Interfaces.TagCloudInterfaces;
 using UdemyCarBook.Persistance.Context;
 using UdemyCarBook.Persistance.Repositories;
@@ -17,6 +18,7 @@ using UdemyCarBook.Persistance.Repositories.BlogRepositories;
 using UdemyCarBook.Persistance.Repositories.CarPricingRepositories;
 using UdemyCarBook.Persistance.Repositories.CarRepositories;
 using UdemyCarBook.Persistance.Repositories.CommentRepositories;
+using UdemyCarBook.Persistance.Repositories.StatisticRepository;
 using UdemyCarBook.Persistance.Repositories.TagCloudRepositories;
 
 namespace UdemyCarBook.Persistance.Extensions;
@@ -31,6 +33,7 @@ public static class Container
         services.AddScoped(typeof(ICarPricingRepository), typeof(CarPricingRepository));
         services.AddScoped(typeof(ITagCloudRepository), typeof(TagCloudRepository));
         services.AddScoped(typeof(IGenericRepository<>), typeof(CommentRepository<>));
+        services.AddScoped(typeof(IStatisticRepository), typeof(StatisticRepository));
         services.AddScoped<GetAboutByIdQueryHandler>();
         services.AddScoped<GetAboutQueryHandler>();
         

@@ -9,20 +9,20 @@ using UdemyCarBook.Application.Features.Mediator.Results.StatisticResults;
 using UdemyCarBook.Application.Interfaces.StatisticInterfaces;
 
 namespace UdemyCarBook.Application.Features.Mediator.Handlers.StatisticHandlers;
-public class GetAuthorCountQueryHandler : IRequestHandler<GetAuthorCountQuery, GetAuthorCountQueryResult>
+public class GetWeeklyAvgRentPriceQueryHandler : IRequestHandler<GetWeeklyAvgRentPriceQuery, GetWeeklyAvgRentPriceQueryResult>
 {
     private readonly IStatisticRepository _statisticRepository;
 
-    public GetAuthorCountQueryHandler(IStatisticRepository statisticRepository)
+    public GetWeeklyAvgRentPriceQueryHandler(IStatisticRepository statisticRepository)
     {
         _statisticRepository = statisticRepository;
     }
 
-    public async Task<GetAuthorCountQueryResult> Handle(GetAuthorCountQuery request, CancellationToken cancellationToken)
+    public async Task<GetWeeklyAvgRentPriceQueryResult> Handle(GetWeeklyAvgRentPriceQuery request, CancellationToken cancellationToken)
     {
-        return new GetAuthorCountQueryResult
+        return new GetWeeklyAvgRentPriceQueryResult
         {
-            Count = _statisticRepository.GetAuhtorCount()
+            Price = _statisticRepository.GetWeeklyAvgRentPrice()
         };
     }
 }

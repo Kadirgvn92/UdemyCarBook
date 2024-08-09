@@ -1,38 +1,25 @@
-﻿@{
+﻿@using UdemyCarBook.WebUI.Areas.Admin.Models
+
+@model StatisticViewModel
+
+
+@{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-
-<h1>Index</h1>
-
 <div class="content-wrapper">
     <div class="content mt-0 p-2">
         <div class="container-fluid">
+            <h2>İstatistikler</h2>
+            <hr />
             <div class="row">
                 <div class="col-lg-3 col-6">
                     <!-- small card -->
-                    <div class="small-box bg-info">
+                    <div class="small-box bg-light">
                         <div class="inner">
-                            <h3>150</h3>
+                            <h3>@Model.CarCount.Count</h3>
 
-                            <p>New Orders</p>
-                        </div>
-                        <div class="icon">
-                            <i class="fas fa-shopping-cart"></i>
-                        </div>
-                        <a href="#" class="small-box-footer">
-                            More info <i class="fas fa-arrow-circle-right"></i>
-                        </a>
-                    </div>
-                </div>
-                <!-- ./col -->
-                <div class="col-lg-3 col-6">
-                    <!-- small card -->
-                    <div class="small-box bg-success">
-                        <div class="inner">
-                            <h3>53<sup style="font-size: 20px">%</sup></h3>
-
-                            <p>Bounce Rate</p>
+                            <p>Araç Sayısı</p>
                         </div>
                         <div class="icon">
                             <i class="ion ion-stats-bars"></i>
@@ -45,14 +32,14 @@
                 <!-- ./col -->
                 <div class="col-lg-3 col-6">
                     <!-- small card -->
-                    <div class="small-box bg-warning">
+                    <div class="small-box bg-light">
                         <div class="inner">
-                            <h3>44</h3>
+                            <h3>@Model.BlogCount.Count</h3>
 
-                            <p>User Registrations</p>
+                            <p>Blog Saysı</p>
                         </div>
                         <div class="icon">
-                            <i class="fas fa-user-plus"></i>
+                            <i class="ion ion-stats-bars"></i>
                         </div>
                         <a href="#" class="small-box-footer">
                             More info <i class="fas fa-arrow-circle-right"></i>
@@ -62,14 +49,14 @@
                 <!-- ./col -->
                 <div class="col-lg-3 col-6">
                     <!-- small card -->
-                    <div class="small-box bg-danger">
+                    <div class="small-box bg-light">
                         <div class="inner">
-                            <h3>65</h3>
+                            <h3>@Model.AuthorCount.Count</h3>
 
-                            <p>Unique Visitors</p>
+                            <p>Yazar Sayısı</p>
                         </div>
                         <div class="icon">
-                            <i class="fas fa-chart-pie"></i>
+                            <i class="ion ion-stats-bars"></i>
                         </div>
                         <a href="#" class="small-box-footer">
                             More info <i class="fas fa-arrow-circle-right"></i>
@@ -77,6 +64,248 @@
                     </div>
                 </div>
                 <!-- ./col -->
+                <div class="col-lg-3 col-6">
+                    <!-- small card -->
+                    <div class="small-box bg-light">
+                        <div class="inner">
+                            <h3>@Model.PricingCount.Count</h3>
+
+                            <p>Fiyatlandırma Sayısı(Günlük,Aylık vs)</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-stats-bars"></i>
+                        </div>
+                        <a href="#" class="small-box-footer">
+                            More info <i class="fas fa-arrow-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+                <!-- ./col -->
+            </div>
+            <div class="row">
+                <div class="col-lg-3 col-6">
+                    <!-- small card -->
+                    <div class="small-box bg-light">
+                        <div class="inner">
+                            <h3>@Model.CarFeatureCount.Count</h3>
+
+                            <p>Araç Özellikleri Sayısı</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-stats-bars"></i>
+                        </div>
+                        <a href="#" class="small-box-footer">
+                            More info <i class="fas fa-arrow-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-3 col-6">
+                    <!-- small card -->
+                    <div class="small-box bg-light">
+                        <div class="inner">
+                            <h3>@Model.TestimonialCount.Count</h3>
+
+                            <p>Referans Saysı</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-stats-bars"></i>
+                        </div>
+                        <a href="#" class="small-box-footer">
+                            More info <i class="fas fa-arrow-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-3 col-6">
+                    <!-- small card -->
+                    <div class="small-box bg-light">
+                        <div class="inner">
+                            <h3>@Model.LocationCount.Count</h3>
+
+                            <p>Konum Sayısı</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-stats-bars"></i>
+                        </div>
+                        <a href="#" class="small-box-footer">
+                            More info <i class="fas fa-arrow-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-6">
+                    <!-- small card -->
+                    <div class="small-box bg-light">
+                        <div class="inner">
+                            <h3>@Model.ServiceCount.Count </h3>
+
+                            <p>Hizmet Sayısı</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-stats-bars"></i>
+                        </div>
+                        <a href="#" class="small-box-footer">
+                            More info <i class="fas fa-arrow-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+                <!-- ./col -->
+                
+                <!-- ./col -->
+            </div>
+            <hr />
+            <h2>Fiyat İstatistikleri</h2>
+            <hr />
+            <div class="row">
+                <div class="col-lg-3 col-6">
+                    <!-- small card -->
+                    <div class="small-box bg-success">
+                        <div class="inner">
+                            <h3>@Model.HourlyAvgRentPrice.Price ₺</h3>
+
+                            <p>Saatlik Ortalama Kiralama Ücreti</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-credit-card"></i>
+                        </div>
+                        <a href="#" class="small-box-footer">
+                            More info <i class="fas fa-arrow-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-6">
+                    <!-- small card -->
+                    <div class="small-box bg-success">
+                        <div class="inner">
+                            <h3>@Model.DailyAvgRentPrice.Price ₺</h3>
+
+                            <p>Günlük Ortalama Kiralama Ücreti</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-credit-card"></i>
+                        </div>
+                        <a href="#" class="small-box-footer">
+                            More info <i class="fas fa-arrow-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- ./col -->
+                <div class="col-lg-3 col-6">
+                    <!-- small card -->
+                    <div class="small-box bg-success">
+                        <div class="inner">
+                            <h3>@Model.WeeklyAvgRentPrice.Price ₺</h3>
+
+                            <p>Haftalık Ortalama Kiralama Ücreti</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-credit-card"></i>
+                        </div>
+                        <a href="#" class="small-box-footer">
+                            More info <i class="fas fa-arrow-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-3 col-6">
+                    <!-- small card -->
+                    <div class="small-box bg-success">
+                        <div class="inner">
+                            <h3>@Model.MontlyAvgRentPrice.Price ₺ </h3>
+
+                            <p>Aylık Ortalama Kiralama Ücreti</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-credit-card"></i>
+                        </div>
+                        <a href="#" class="small-box-footer">
+                            More info <i class="fas fa-arrow-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+                <!-- ./col -->
+               
+                <!-- ./col -->
+            </div>
+            <div class="row">
+               
+                <!-- ./col -->
+                <div class="col-lg-6 col-6">
+                    <!-- small card -->
+                    <div class="small-box bg-success">
+                        <div class="inner">
+                            <h3>@Model.MostCheapPrice.Price ₺</h3>
+
+                            <p>En Ucuz Araç Kiralama Fiyatı</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-credit-card"></i>
+                        </div>
+                        <a href="#" class="small-box-footer">
+                            More info <i class="fas fa-arrow-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-6 col-6">
+                    <!-- small card -->
+                    <div class="small-box bg-success">
+                        <div class="inner">
+                            <h3>@Model.MostExpensivePrice.Price ₺</h3>
+
+                            <p>En Pahalı Araç Kiralama Ücreti</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-credit-card"></i>
+                        </div>
+                        <a href="#" class="small-box-footer">
+                            More info <i class="fas fa-arrow-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+                <!-- ./col -->
+               
+            </div>
+            <hr />
+            <h2>Araçlar</h2>
+            <hr />
+            <div class="row">
+                <div class="col-lg-6 col-6">
+                    <!-- small card -->
+                    <div class="small-box bg-warning">
+                        <div class="inner">
+                            <h3>@Model.CheapCar.Car</h3>
+
+                            <p>En Uygun Kiralık Araç</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-car"></i>
+                        </div>
+                        <a href="#" class="small-box-footer">
+                            More info <i class="fas fa-arrow-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-6 col-6">
+                    <!-- small card -->
+                    <div class="small-box bg-warning">
+                        <div class="inner">
+                            <h3>@Model.ExpensiveCar.Car </h3>
+
+                            <p>En Lüks Kiralık Araç</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-car"></i>
+                        </div>
+                        <a href="#" class="small-box-footer">
+                            More info <i class="fas fa-arrow-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+                
+
             </div>
         </div>
     </div>

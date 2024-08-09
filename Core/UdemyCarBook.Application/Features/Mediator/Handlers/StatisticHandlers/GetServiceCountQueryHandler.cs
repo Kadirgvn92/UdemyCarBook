@@ -9,20 +9,20 @@ using UdemyCarBook.Application.Features.Mediator.Results.StatisticResults;
 using UdemyCarBook.Application.Interfaces.StatisticInterfaces;
 
 namespace UdemyCarBook.Application.Features.Mediator.Handlers.StatisticHandlers;
-public class GetAuthorCountQueryHandler : IRequestHandler<GetAuthorCountQuery, GetAuthorCountQueryResult>
+public class GetServiceCountQueryHandler : IRequestHandler<GetServiceCountQuery, GetServiceCountQueryResult>
 {
     private readonly IStatisticRepository _statisticRepository;
 
-    public GetAuthorCountQueryHandler(IStatisticRepository statisticRepository)
+    public GetServiceCountQueryHandler(IStatisticRepository statisticRepository)
     {
         _statisticRepository = statisticRepository;
     }
 
-    public async Task<GetAuthorCountQueryResult> Handle(GetAuthorCountQuery request, CancellationToken cancellationToken)
+    public async Task<GetServiceCountQueryResult> Handle(GetServiceCountQuery request, CancellationToken cancellationToken)
     {
-        return new GetAuthorCountQueryResult
+        return new GetServiceCountQueryResult
         {
-            Count = _statisticRepository.GetAuhtorCount()
-        };
+            Count = _statisticRepository.GetServiceCount()
+        }; 
     }
 }

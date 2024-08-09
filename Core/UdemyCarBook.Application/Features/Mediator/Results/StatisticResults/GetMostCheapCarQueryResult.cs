@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace UdemyCarBook.Application.Features.Mediator.Results.StatisticResults;
-public class GetAuthorCountQueryResult
+public class GetMostCheapCarQueryResult
 {
-    public int Count { get; set; }
+    public string Car { get; set; }
 }

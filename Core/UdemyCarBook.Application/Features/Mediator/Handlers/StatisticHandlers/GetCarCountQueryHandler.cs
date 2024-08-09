@@ -23,7 +23,7 @@ public class GetCarCountQueryHandler : IRequestHandler<GetCarCountQuery, GetCarC
     {
         return new GetCarCountQueryResult
         {
-            CarCount = _carRepository.GetCarCount()
+            Count = _carRepository.GetCarCount()
         };
     }
 }

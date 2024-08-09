@@ -37,7 +37,7 @@ public class StatisticRepository : IStatisticRepository
 
     public int GetCarFeatureCount()
     {
-        var values = _context.CarFeatures.Count();
+        var values = _context.Features.Count();
         return values;
     }
 
@@ -103,13 +103,19 @@ public class StatisticRepository : IStatisticRepository
 
     public int GetPricingCount()
     {
-        var values = _context.CarPricings.Count();
+        var values = _context.Pricings.Count();
         return values;
     }
 
     public int GetTestimonialCount()
     {
         var values = _context.Testimonials.Count();
+        return values;
+    }
+
+    public int GetServiceCount()
+    {
+        var values = _context.Services.Count();
         return values;
     }
 }
