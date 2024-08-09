@@ -10,27 +10,28 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <div class="card-title">Konumlar Alanı</div>
+                            <div class="card-title">Hizmetler Alanı</div>
                         </div>
                         <div class="card-body">
                             <div class="card-body p-0">
                                 <div class="mailbox-controls">
                                     <div class="card-sub">
-                                        Konumları bu sayfada görüntüleyebilir veya güncelleyebilirsiniz.
+                                        Hizmetleri bu sayfada görüntüleyebilir veya güncelleyebilirsiniz.
                                     </div>
                                     <br />
                                     <div>
-                                        <button id="createLocationBtn" class="btn btn-primary">Yeni Konum Oluştur</button>
+                                        <button id="createServiceBtn" class="btn btn-primary">Yeni Hizmet Oluştur</button>
                                     </div>
                                 </div>
                                 <table id="table" class="table table-striped">
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>Ad Soyad</th>
+                                            <th>Hizmet</th>
+                                            <th>Açıklama</th>
+                                            <th>Icon Url</th>
                                             <th class="text-center">Sil</th>
                                             <th class="text-center">Güncelle</th>
-                                            <th class="text-center">Konumu Aç</th>
                                         </tr>
                                     </thead>
                                     <tbody class="border-top"></tbody>
@@ -47,19 +48,27 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="updateModalLabel">Adres Güncelle</h5>
+                <h5 class="modal-title" id="updateModalLabel">Hizmet Güncelle</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form id="updateForm" method="post" action="/Admin/Location/Update">
-                    <input type="hidden" id="LocationID" name="LocationID" value="" />
+                <form id="updateForm" method="post" action="/Admin/Service/Update">
+                    <input type="hidden" id="serviceID" name="serviceID" value="" />
                     <div class="form-group">
-                        <label for="Description">Konum</label>
-                        <input type="text" class="form-control" id="Name" name="Name" value="" required />
+                        <label for="Title">Hizmet</label>
+                        <input type="text" class="form-control" id="Title" name="Title" value="" required />
                     </div>
-                    <button type="submit" class="btn bg-gradient-info">Güncelle</button>
+                    <div class="form-group">
+                        <label for="Description">Açıklama</label>
+                        <input type="text" class="form-control" id="Description" name="Description" value="" required />
+                    </div>
+                     <div class="form-group">
+                        <label for="Icon">İkon</label>
+                        <input type="text" class="form-control" id="Icon" name="Icon" value="" required />
+                    </div>
+                    <button type="submit" class="btn bg-gradient-primary">Güncelle</button>
                 </form>
             </div>
         </div>
@@ -70,18 +79,26 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="createModalLabel">Adres Oluştur</h5>
+                <h5 class="modal-title" id="createModalLabel">Hizmet Oluştur</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form id="createForm" method="post" action="/Admin/Location/Create">
+                <form id="createForm" method="post" action="/Admin/Service/Create">
                     <div class="form-group">
-                        <label for="Location">Konum</label>
-                        <input type="text" class="form-control" id="Name" name="Name" value="" required />
+                        <label for="Title">Hizmet</label>
+                        <input type="text" class="form-control" id="Title" name="Title" value="" required />
                     </div>
-                    <button type="submit" class="btn bg-gradient-primary">Oluştur</button>
+                    <div class="form-group">
+                        <label for="Description">Açıklama</label>
+                        <input type="text" class="form-control" id="Description" name="Description" value="" required />
+                    </div>
+                     <div class="form-group">
+                        <label for="Icon">İkon</label>
+                        <input type="text" class="form-control" id="Icon" name="Icon" value="" required />
+                    </div>
+                    <button type="submit" class="btn bg-gradient-primary">Hizmet Oluştur</button>
                 </form>
             </div>
         </div>
@@ -96,7 +113,7 @@
 
             $('#table').DataTable({
                 ajax: {
-                    url: '/Admin/Location/GetLocations',
+                    url: '/Admin/Service/GetServices',
                     type: 'GET',
                     dataSrc: function (json) {
                         // Gelen veriyi konsola yazdır
@@ -108,18 +125,20 @@
                     {
                         data: null,
                         className: 'text-center',
-                        width:'100px',
+                        width: '100px',
                         render: function (data, type, row, meta) {
                             return meta.row + 1; // Satır numarasını döndür (1 tabanlı)
                         }
                     },
-                    { data: 'name' },
+                    { data: 'title' },
+                    { data: 'description' },
+                    { data: 'icon' },
                     {
                         data: null,
                         className: 'text-center',
                         width: '150px',
                         render: function (data, type, row, meta) {
-                            return '<a href="/Admin/Location/Delete/' + row.locationID + '" class="btn btn-danger">Sil</a>';
+                            return '<a href="/Admin/Service/Delete/' + row.serviceID + '" class="btn btn-danger">Sil</a>';
                         }
                     },
                     {
@@ -127,15 +146,7 @@
                         className: 'text-center',
                         width: '150px',
                         render: function (data, type, row, meta) {
-                            return '<a href="/Admin/Location/Update/' + row.locationID + '" data-id="' + row.locationID + '" class="btn btn-info">Güncelle</a>';
-                        }
-                    },
-                    {
-                        data: null,
-                        className: 'text-center',
-                        width: '300px',
-                        render: function (data, type, row, meta) {
-                            return '<a target="_blank" href="https://www.google.com/maps/search/?api=1&query=' + row.name + '" id="goToGoogleMaps" class="btn btn-secondary">Google Haritalarda Aç </a>';
+                            return '<a href="/Admin/Service/Update/' + row.serviceID + '" data-id="' + row.serviceID + '" id="updateBtn" class="btn btn-info">Güncelle</a>';
                         }
                     }
                 ],
@@ -152,20 +163,22 @@
             });
         });
 
-        $('#table').on('click', '.btn-info', function (e) {
+        $('#table').on('click', '#updateBtn', function (e) {
             e.preventDefault();
 
             // Güncelle butonuna tıklanan satırın ID'sini al
-            var locationID = $(this).data('id');
-            console.log(locationID)
+            var serviceID = $(this).data('id');
+            console.log(serviceID)
             // AJAX ile ilgili ID'ye ait verileri getir
             $.ajax({
-                url: '/Admin/Location/GetLocation/' + locationID,
+                url: '/Admin/Service/GetService/' + serviceID,
                 type: 'GET',
                 success: function (data) {
                     // Gelen JSON verisini inputlara yerleştir
-                    $('#LocationID').val(data.locationID);
-                    $('#Name').val(data.name);
+                    $('#serviceID').val(data.serviceID);
+                    $('#Title').val(data.title);
+                    $('#Description').val(data.description);
+                    $('#Icon').val(data.icon);
 
                     // Modalı aç
                     $('#updateModal').modal('show');
@@ -185,7 +198,7 @@
 
             // AJAX ile güncelleme isteği gönder
             $.ajax({
-                url: '/Admin/Location/Update',
+                url: '/Admin/Service/Update',
                 type: 'POST',
                 data: formData,
                 success: function (response) {
@@ -201,15 +214,13 @@
             });
         });
 
-        $('#createLocationBtn').on('click', function (e) {
+        $('#createServiceBtn').on('click', function (e) {
             e.preventDefault();
 
             // Modalı direkt aç
             $('#createModal').modal('show');
         });
 
-        // Güncelleme formunu submit ettiğinde AJAX ile güncellemeyi yap
-        // Yeni konum oluşturma formunu submit ettiğinde AJAX ile ekleme işlemini yap
         $('#createForm').on('submit', function (e) {
             e.preventDefault();
 
@@ -219,7 +230,7 @@
 
             // AJAX ile ekleme isteği gönder
             $.ajax({
-                url: '/Admin/Location/Create',
+                url: '/Admin/Service/Create',
                 type: 'POST',
                 data: formData,
                 success: function (response) {
