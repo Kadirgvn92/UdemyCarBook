@@ -1,0 +1,261 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="content-wrapper">
+    <div class="content mt-0 p-2">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Referanslar Alanı</div>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-body p-0">
+                                <div class="mailbox-controls">
+                                    <div class="card-sub">
+                                        Referanslarları bu sayfada görüntüleyebilir veya güncelleyebilirsiniz.
+                                    </div>
+                                    <br />
+                                    <div>
+                                        <button id="createTestimonialBtn" class="btn btn-primary">Yeni Referans Oluştur</button>
+                                    </div>
+                                </div>
+                                <table id="table" class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Adı Soyadı</th>
+                                            <th>Başlık</th>
+                                            <th>Yorum</th>
+                                            <th>Resim</th>
+                                            <th class="text-center">Sil</th>
+                                            <th class="text-center">Güncelle</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="border-top"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="updateModalLabel">Referanslar Güncelle</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="updateForm" method="post" action="/Admin/Testimonial/Update">
+                    <input type="hidden" id="TestimonialID" name="TestimonialID" value="" />
+                    <div class="form-group">
+                        <label for="Name">Ad Soyad</label>
+                        <input type="text" class="form-control" id="Name" name="Name" value="" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="Title">Başlık</label>
+                        <input type="text" class="form-control" id="Title" name="Title" value="" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="Comment">Yorum</label>
+                        <input type="text" class="form-control" id="Comment" name="Comment" value="" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="ImageUrl">Resim</label>
+                        <input type="text" class="form-control" id="ImageUrl" name="ImageUrl" value="" required />
+                    </div>
+                    <button type="submit" class="btn bg-gradient-primary">Güncelle</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="createModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="createModalLabel">Referanslar Oluştur</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="createForm" method="post" action="/Admin/Testimonial/Create">
+                    <div class="form-group">
+                        <label for="Name">Ad Soyad</label>
+                        <input type="text" class="form-control" id="Name" name="Name" value="" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="Title">Başlık</label>
+                        <input type="text" class="form-control" id="Title" name="Title" value="" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="Comment">Yorum</label>
+                        <input type="text" class="form-control" id="Comment" name="Comment" value="" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="ImageUrl">Resim</label>
+                        <input type="text" class="form-control" id="ImageUrl" name="ImageUrl" value="" required />
+                    </div>
+                    <button type="submit" class="btn bg-gradient-primary">Referans Oluştur</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+
+    @await Component.InvokeAsync("_AdminDatatableScriptPartial")
+
+    <script>
+        $(document).ready(function () {
+
+            $('#table').DataTable({
+                ajax: {
+                    url: '/Admin/Testimonial/GetTestimonials',
+                    type: 'GET',
+                    dataSrc: function (json) {
+                        // Gelen veriyi konsola yazdır
+                        console.log(json);
+                        return json; // Veriyi tabloya ekle
+                    }
+                },
+                columns: [
+                    {
+                        data: null,
+                        className: 'text-center',
+                        width: '100px',
+                        render: function (data, type, row, meta) {
+                            return meta.row + 1; // Satır numarasını döndür (1 tabanlı)
+                        }
+                    },
+                    { data: 'name' },
+                    { data: 'title' },
+                    { data: 'comment' },
+                    { data: 'imageUrl' },
+                    {
+                        data: null,
+                        className: 'text-center',
+                        width: '150px',
+                        render: function (data, type, row, meta) {
+                            return '<a href="/Admin/Testimonial/Delete/' + row.testimonialID + '" class="btn btn-danger">Sil</a>';
+                        }
+                    },
+                    {
+                        data: null,
+                        className: 'text-center',
+                        width: '150px',
+                        render: function (data, type, row, meta) {
+                            return '<a href="/Admin/Testimonial/Update/' + row.testimonialID + '" data-id="' + row.testimonialID + '" id="updateBtn" class="btn btn-info">Güncelle</a>';
+                        }
+                    }
+                ],
+                paging: true,
+                lengthChange: true,
+                searching: true,
+                ordering: true,
+                info: true,
+                autoWidth: true,
+                responsive: true,
+                dom: 'Bfrtip',
+                language: dataTableLanguageSettings, //_AdminDatatableScriptPartial içinde tanımladım
+                buttons: ["copy", "csv", "excel", "pdf", "print", "colvis"]
+            });
+        });
+
+        $('#table').on('click', '#updateBtn', function (e) {
+            e.preventDefault();
+
+            var TestimonialID = $(this).data('id');
+            console.log(TestimonialID)
+            $.ajax({
+                url: '/Admin/Testimonial/GetTestimonial/' + TestimonialID,
+                type: 'GET',
+                success: function (data) {
+                    // Gelen JSON verisini inputlara yerleştir
+                    $('#TestimonialID').val(data.testimonialID);
+                    $('#Name').val(data.name);
+                    $('#Title').val(data.title);
+                    $('#Comment').val(data.comment);
+                    $('#ImageUrl').val(data.imageUrl);
+
+                    // Modalı aç
+                    $('#updateModal').modal('show');
+                },
+                error: function () {
+                    alert('Veri getirilirken bir hata oluştu.');
+                }
+            });
+        });
+
+        // Güncelleme formunu submit ettiğinde AJAX ile güncellemeyi yap
+        $('#updateForm').on('submit', function (e) {
+            e.preventDefault();
+
+            // Form verilerini al
+            var formData = $(this).serialize();
+
+            // AJAX ile güncelleme isteği gönder
+            $.ajax({
+                url: '/Admin/Testimonial/Update',
+                type: 'POST',
+                data: formData,
+                success: function (response) {
+                    // Modalı kapat
+                    $('#updateModal').modal('hide');
+
+                    // Tabloyu güncelle
+                    $('#table').DataTable().ajax.reload();
+                },
+                error: function () {
+                    alert('Güncelleme sırasında bir hata oluştu.');
+                }
+            });
+        });
+
+        $('#createTestimonialBtn').on('click', function (e) {
+            e.preventDefault();
+
+            // Modalı direkt aç
+            $('#createModal').modal('show');
+        });
+
+        $('#createForm').on('submit', function (e) {
+            e.preventDefault();
+
+            // Form verilerini al
+            var formData = $(this).serialize();
+            console.log(formData);
+
+            // AJAX ile ekleme isteği gönder
+            $.ajax({
+                url: '/Admin/Testimonial/Create',
+                type: 'POST',
+                data: formData,
+                success: function (response) {
+                    // Modalı kapat
+                    $('#createModal').modal('hide');
+
+                    // Tabloyu güncelle
+                    $('#table').DataTable().ajax.reload();
+                },
+                error: function () {
+                    alert('Ekleme sırasında bir hata oluştu.');
+                }
+            });
+        });
+
+
+    </script>
+}
