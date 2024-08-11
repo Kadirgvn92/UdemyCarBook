@@ -31,6 +31,7 @@ public class CreateReservationCommandHandler : IRequestHandler<CreateReservation
             Phone = request.Phone,
             PickUpLocationID = request.PickUpLocationID,
             CarID = request.CarID,
+            Status = "Rezervasyon Alındı"
         });
     }
 }

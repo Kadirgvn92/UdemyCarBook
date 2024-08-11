@@ -20,4 +20,5 @@ public class Reservation
     public string? Description { get; set; }
     public Location PickUpLocation { get; set; }
     public Location DropofLocation { get; set; }
+    public string Status { get; set; }
 }
