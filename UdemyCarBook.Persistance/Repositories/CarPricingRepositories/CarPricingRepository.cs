@@ -28,10 +28,15 @@ public class CarPricingRepository : ICarPricingRepository
 	public List<GetCarPricingWithTimePeriodQueryResult> GetCarPricingWithTimePeriod()
 	{
 		var carPricings = _context.CarPricings
-		   .GroupBy(x => new { x.Car.Model }) // CarName'i varsayıyorum
+			.Include(x => x.Car)
+			.ThenInclude(y => y.Brands)
+		   .GroupBy(x => new { x.CarID, x.Car.Model, x.Car.Brands.Name, x.Car.CoverImageUrl }) // CarName'i varsayıyorum
 		   .Select(g => new GetCarPricingWithTimePeriodQueryResult
 		   {
+			   CarID = g.Key.CarID,
 			   Model = g.Key.Model,
+			   BrandName = g.Key.Name,
+			   CoverImageUrl = g.Key.CoverImageUrl,
 			   DailyAmount = g.Where(x => x.PricingID == 3).Sum(y => y.Amount),
 			   WeeklyAmount = g.Where(x => x.PricingID == 4).Sum(y => y.Amount),
 			   MontlyAmount = g.Where(x => x.PricingID == 5).Sum(y => y.Amount)

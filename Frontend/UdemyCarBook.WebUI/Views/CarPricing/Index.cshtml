@@ -25,9 +25,9 @@
 							@foreach(var item in Model)
 							{
 								<tr class="">
-									<td class="car-image"><div class="img" style="background-image:url(/carbook-master/images/car-1.jpg);"></div></td>
+									<td class="car-image"><div class="img" style="background-image:url(@item.CoverImageUrl);"></div></td>
 									<td class="product-name">
-										<h3>@item.Model</h3>
+										<h3>@item.BrandName @item.Model</h3>
 										<p class="mb-0 rated">
 											<span>rated:</span>
 											<span class="ion-ios-star"></span>
@@ -39,7 +39,7 @@
 									</td>
 
 									<td class="price">
-										<p class="btn-custom"><a href="#">Hemen Kirala</a></p>
+										<p class="btn-custom"><a href="/RentACar/Index/@item.CarID">Hemen Kirala</a></p>
 										<div class="price-rate">
 											<h3>
 												<span class="num"> @item.DailyAmount ₺</span>
@@ -50,7 +50,7 @@
 									</td>
 
 									<td class="price">
-										<p class="btn-custom"><a href="#">Hemen Kirala</a></p>
+										<p class="btn-custom"><a href="/RentACar/Index/@item.CarID">Hemen Kirala</a></p>
 										<div class="price-rate">
 											<h3>
 												<span class="num"> @item.WeeklyAmount ₺</span>
@@ -61,7 +61,7 @@
 									</td>
 
 									<td class="price">
-										<p class="btn-custom"><a href="#">Hemen Kirala</a></p>
+										<p class="btn-custom"><a href="/RentACar/Index/@item.CarID">Hemen Kirala</a></p>
 										<div class="price-rate">
 											<h3>
 												<span class="num"> @item.MontlyAmount ₺</span>
