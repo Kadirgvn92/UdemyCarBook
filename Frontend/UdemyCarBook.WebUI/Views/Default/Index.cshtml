@@ -43,12 +43,12 @@
                 <div class="col-md-12	featured-top">
                     <div class="row no-gutters">
                         <div class="col-md-4 d-flex align-items-center">
-                            <form action="#" class="request-form ftco-animate bg-primary">
+                            <form method="post" class="request-form ftco-animate bg-primary">
                                 <h2>Şimdi Aracınızı Kiralayın</h2>
 
                                 <div class="form-group" id="pickup-location-group" style="display:block;">
                                     <label for="pickup-location" class="label">Nereden Alacaksınız ?</label>
-                                    @Html.DropDownListFor(x => x.LocationID, (List<SelectListItem>)ViewBag.Location, new { @class = "form-box" })
+                                    @Html.DropDownListFor(x => x.LocationID, (List<SelectListItem>)ViewBag.Location, new { @class = "form-box pickUpLocation", name="locationID" })
                                 </div>
                                 <div class="form-group">
                                     <input type="checkbox" id="dropoff-checkbox">
@@ -56,25 +56,30 @@
                                 </div>
                                 <div class="form-group" id="dropoff-location-group" style="display:none;">
                                     <label for="dropoff-location" class="label">Nereye Bırakacaksınız ?</label>
-                                    @Html.DropDownListFor(x => x.LocationID, (List<SelectListItem>)ViewBag.Location, new { @class = "form-control", @id = "dropoff-location" })
+                                    @Html.DropDownListFor(x => x.LocationID, (List<SelectListItem>)ViewBag.Location, new { @class = "form-box dropofLocation" })
                                 </div>
                                 <div class="d-flex">
                                     <div class="form-group mr-2">
                                         <label for="" class="label">Alış Tarihi</label>
-                                        <input type="text" class="form-control" id="book_pick_date" placeholder="Date">
+                                        <input type="text" class="form-control" id="pickUpDate" name="pickUpDate" placeholder="Date">
                                     </div>
                                     <div class="form-group ml-2">
                                         <label for="" class="label">İade Tarihi</label>
-                                        <input type="text" class="form-control" id="book_off_date" placeholder="Date">
+                                        <input type="text" class="form-control" id="dropofDate" name="dropofDate" placeholder="Date">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="" class="label">Alış Saati</label>
-                                    <input type="text" class="form-control" name="v" id="time_pick" placeholder="Time">
+                                    <input type="text" class="form-control" id="pickUpTime" name="pickUpTime" placeholder="Time">
                                 </div>
 
                                 <div class="form-group">
-                                    <input type="submit" value="Rent A Car Now" class="btn btn-secondary py-3 px-4">
+                                    <label for="" class="label">İade Saati</label>
+                                    <input type="text" class="form-control"  id="dropofTime" name="dropofTime" placeholder="Time">
+                                </div>
+
+                                <div class="form-group">
+                                    <button class="btn btn-secondary py-3 px-4">Hemen Araç Kirala</button>
                                 </div>
                             </form>
                         </div>

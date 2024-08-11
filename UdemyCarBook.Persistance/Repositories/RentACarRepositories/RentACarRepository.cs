@@ -21,7 +21,7 @@ public class RentACarRepository : IRentACarRepository
 
     public async Task<List<RentACar>> GetByFilterAsync(Expression<Func<RentACar, bool>> filter)
     {
-        var values = await _context.RentACars.Where(filter).ToListAsync();
+        var values = await _context.RentACars.Where(filter).Include(x => x.Car).ThenInclude(y => y.Brands).ToListAsync();
         return values;
     }
 }

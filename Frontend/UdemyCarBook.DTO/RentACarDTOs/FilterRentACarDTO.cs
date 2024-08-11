@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UdemyCarBook.Application.Features.Mediator.Results.RentACarResults;
-public class GetRentACarQueryResult
+namespace UdemyCarBook.DTO.RentACarDTOs;
+public class FilterRentACarDTO
 {
     public int CarID { get; set; }
     public string Brand { get; set; }

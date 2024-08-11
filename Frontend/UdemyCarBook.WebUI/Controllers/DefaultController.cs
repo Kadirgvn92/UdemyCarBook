@@ -34,4 +34,15 @@ public class DefaultController : Controller
         }
         return View();
     }
+    [HttpPost]
+    public IActionResult Index(int locationID, string pickUpDate, string dropofDate, string pickUpTime, string dropofTime)
+    {
+        TempData["LocationID"] = locationID;
+        TempData["pickUpDate"] = pickUpDate;
+        TempData["dropofDate"] = dropofDate;
+        TempData["pickUpTime"] = pickUpTime;
+        TempData["dropofTime"] = dropofTime;
+
+        return RedirectToAction("Index", "RentACar");  
+    }
 }
