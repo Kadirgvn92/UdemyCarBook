@@ -32,10 +32,25 @@ public class CarBookContext : DbContext
     public DbSet<Location> Locations { get; set; }
     public DbSet<Pricing> Pricings { get; set; }
     public DbSet<RentACar> RentACars { get; set; }
+    public DbSet<Reservation> Reservations { get; set; }
     public DbSet<RentACarProcess> RentACarProcesses { get; set; }
     public DbSet<Service> Services { get; set; }
     public DbSet<SocialMedia> SocialMedias { get; set; }
     public DbSet<Testimonial> Testimonials { get; set; }
     public DbSet<TagCloud> TagClouds { get; set; }
 
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Reservation>()
+            .HasOne(x => x.PickUpLocation)
+            .WithMany(y => y.PickUpReservation)
+            .HasForeignKey(z => z.PickUpLocationID)
+            .OnDelete(DeleteBehavior.ClientSetNull);
+
+        modelBuilder.Entity<Reservation>()
+            .HasOne(x => x.DropofLocation)
+            .WithMany(y => y.DropofReservation)
+            .HasForeignKey(z => z.DropofLocationID)
+            .OnDelete(DeleteBehavior.ClientSetNull);
+    }
 }
