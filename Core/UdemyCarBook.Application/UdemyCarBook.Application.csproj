@@ -17,7 +17,6 @@
 
   <ItemGroup>
     <Folder Include="Features\Mediator\Commands\StatisticCommands\" />
-    <Folder Include="Features\Mediator\Results\ReservationResults\" />
   </ItemGroup>
 
 </Project>
