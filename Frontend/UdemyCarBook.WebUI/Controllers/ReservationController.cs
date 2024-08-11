@@ -1,10 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Humanizer;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
 using System.Net.Http;
+using System.Text;
 using UdemyCarBook.DTO.CarDTOs;
 using UdemyCarBook.DTO.CarPricingDTOs;
 using UdemyCarBook.DTO.LocationDTOs;
+using UdemyCarBook.DTO.ReservationDTOs;
 
 namespace UdemyCarBook.WebUI.Controllers;
 public class ReservationController : Controller
@@ -15,24 +18,10 @@ public class ReservationController : Controller
     {
         _httpClientFactory = httpClientFactory;
     }
-
-    public async Task<IActionResult> Index()
+    [HttpGet]
+    public async Task<IActionResult> Index(int id)
     {
-        var client2 = _httpClientFactory.CreateClient();
-        var responseMessage2 = await client2.GetAsync("https://localhost:44323/api/Car/GetCarWithBrand");
-        if (responseMessage2.IsSuccessStatusCode)
-        {
-            var jsonData = await responseMessage2.Content.ReadAsStringAsync();
-            var values = JsonConvert.DeserializeObject<List<ResultCarDTO>>(jsonData);
-
-            List<SelectListItem> list2 = (from x in values
-                                         select new SelectListItem
-                                         {
-                                             Text = x.BrandName,
-                                             Value = x.CarID.ToString(),
-                                         }).ToList();
-            ViewBag.Cars = list2;
-        }
+        ViewBag.Id = id;    
         var client = _httpClientFactory.CreateClient();
         var responseMessage = await client.GetAsync("https://localhost:44323/api/Locations");
         if (responseMessage.IsSuccessStatusCode)
@@ -48,6 +37,19 @@ public class ReservationController : Controller
                                          }).ToList();
             ViewBag.Location = list;
             return View();
+        }
+        return View();
+    }
+    [HttpPost]
+    public async Task<IActionResult> Index(CreateReservationDTO DTO)
+    {
+        var client = _httpClientFactory.CreateClient();
+        var jsonData = JsonConvert.SerializeObject(DTO);
+        StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
+        var responseMessage = await client.PostAsync("https://localhost:44323/api/Reservation/", stringContent);
+        if (responseMessage.IsSuccessStatusCode)
+        {
+            return RedirectToAction("Index","Default");
         }
         return View();
     }

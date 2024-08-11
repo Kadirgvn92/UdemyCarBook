@@ -12,6 +12,7 @@ public class Reservation
     public string Mail { get; set; }
     public string Phone { get; set; }
     public int CarID { get; set; }
+    public Car Car { get; set; }
     public int? PickUpLocationID { get; set; }
     public int? DropofLocationID { get; set; }
     public int Age { get; set; }

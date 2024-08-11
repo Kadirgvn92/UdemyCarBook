@@ -1,10 +1,11 @@
-﻿@using UdemyCarBook.DTO
+﻿
+@using UdemyCarBook.DTO.ReservationDTOs
 @{
     ViewData["Title"] = "Araç Rezervasyon Ekranı";
     Layout = "~/Views/UILayout/Index.cshtml";
 }
 
-@model ResultDTO
+@model CreateReservationDTO
 
 <style>
     .pickUpLocation {
@@ -18,32 +19,34 @@
     <div class="container">
         <div class="row d-flex justify-content-center mb-5 contact-info">
             <div class="col-md-12 block-9 mb-md-5">
-                <form class="bg-light p-5 contact-form" method="post">
-                    
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Adınız ve Soyadınız">
+                <form class="bg-light p-5 contact-form" method="post" >
+                    <div class="form-group hidden" >
+                        <input type="hidden" class="form-control" asp-for="CarID" value="@ViewBag.Id" placeholder="Adınız ve Soyadınız">
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Telefon Numaranız">
+                        <input type="text" class="form-control" asp-for="Name" placeholder="Adınız ve Soyadınız">
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Mail Adresiniz">
+                        <input type="text" class="form-control" asp-for="Phone" placeholder="Telefon Numaranız">
                     </div>
                     <div class="form-group">
-                        @Html.DropDownListFor(x => x.Locations.LocationID, (List<SelectListItem>)ViewBag.Location, new { @class = "form-control" })
+                        <input type="text" class="form-control" asp-for="Mail" placeholder="Mail Adresiniz">
                     </div>
                     <div class="form-group">
-                        @Html.DropDownListFor(x => x.Locations.LocationID, (List<SelectListItem>)ViewBag.Location, new { @class = "form-control" })
+                        @Html.DropDownListFor(x => x.PickUpLocationID, (List<SelectListItem>)ViewBag.Location, new { @class = "form-control" })
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Yaşınız ?">
+                        @Html.DropDownListFor(x => x.DropofLocationID, (List<SelectListItem>)ViewBag.Location, new { @class = "form-control" })
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Ehliyet yılınız ?">
+                        <input type="text" class="form-control" asp-for="Age" placeholder="Yaşınız ?">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" asp-for="DriverLicenceYear" placeholder="Ehliyet yılınız ?">
                     </div>
 
                     <div class="form-group">
-                        <textarea cols="30" rows="7" class="form-control" placeholder="Varsa eklemek istedikleriniz"></textarea>
+                        <textarea cols="30" rows="7" class="form-control" asp-for="Description" placeholder="Varsa eklemek istedikleriniz"></textarea>
                     </div>
                     <div class="form-group">
                         <input type="submit" value="Rezervasyonu Tamamla" class="btn btn-primary py-3 px-5">
