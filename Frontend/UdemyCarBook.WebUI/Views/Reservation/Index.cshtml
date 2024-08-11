@@ -1,30 +1,39 @@
-﻿@{
+﻿@using UdemyCarBook.DTO
+@{
     ViewData["Title"] = "Araç Rezervasyon Ekranı";
     Layout = "~/Views/UILayout/Index.cshtml";
 }
+
+@model ResultDTO
+
+<style>
+    .pickUpLocation {
+        width: 100%;
+        height:40px;
+        border: 1px thin darkgray;
+    }
+</style>
 
 <section class="ftco-section contact-section">
     <div class="container">
         <div class="row d-flex justify-content-center mb-5 contact-info">
             <div class="col-md-12 block-9 mb-md-5">
                 <form class="bg-light p-5 contact-form" method="post">
-                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Aracı Seçiniz" >
-                    </div>
+                    
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Adınız ve Soyadınız" >
+                        <input type="text" class="form-control" placeholder="Adınız ve Soyadınız">
                     </div>
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="Telefon Numaranız">
                     </div>
-                     <div class="form-group">
+                    <div class="form-group">
                         <input type="text" class="form-control" placeholder="Mail Adresiniz">
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Nereden teslim alacaksınız ?" >
+                        @Html.DropDownListFor(x => x.Locations.LocationID, (List<SelectListItem>)ViewBag.Location, new { @class = "form-control" })
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Nerede teslim edeceksiniz ?">
+                        @Html.DropDownListFor(x => x.Locations.LocationID, (List<SelectListItem>)ViewBag.Location, new { @class = "form-control" })
                     </div>
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="Yaşınız ?">
@@ -32,9 +41,9 @@
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="Ehliyet yılınız ?">
                     </div>
-                    
+
                     <div class="form-group">
-                        <textarea cols="30" rows="7" class="form-control" placeholder="Varsa eklemek istedikleriniz" ></textarea>
+                        <textarea cols="30" rows="7" class="form-control" placeholder="Varsa eklemek istedikleriniz"></textarea>
                     </div>
                     <div class="form-group">
                         <input type="submit" value="Rezervasyonu Tamamla" class="btn btn-primary py-3 px-5">

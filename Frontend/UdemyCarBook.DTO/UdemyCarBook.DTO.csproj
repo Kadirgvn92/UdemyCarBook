@@ -10,4 +10,12 @@
     <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.17" />
   </ItemGroup>
 
+  <ItemGroup>
+    <EditorConfigFiles Remove="C:\Users\MSI\Desktop\Software\Repo\UdemyCarBook\Frontend\UdemyCarBook.DTO\.editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="C:\Users\MSI\Desktop\Software\Repo\UdemyCarBook\Frontend\UdemyCarBook.DTO\.editorconfig" />
+  </ItemGroup>
+
 </Project>
