@@ -1,4 +1,6 @@
 ﻿
+@model List<ResultFooterAddressDto>
+
 <footer class="ftco-footer ftco-bg-dark ftco-section">
     <div class="container">
         <div class="row mb-5">
@@ -41,11 +43,15 @@
                 <div class="ftco-footer-widget mb-4">
                     <h2 class="ftco-heading-2">Sorunuz mu var?</h2>
                     <div class="block-23 mb-3">
-                        <ul>
-                            <li><span class="icon icon-map-marker"></span><span class="text">Çalı İş Hanı Nilüfer/Bursa</span></li>
-                            <li><a href="#"><span class="icon icon-phone"></span><span class="text">0224 342 22 11</span></a></li>
-                            <li><a href="#"><span class="icon icon-envelope"></span><span class="text">info@carbook.com</span></a></li>
-                        </ul>
+                        @foreach(var item in Model)
+                        {
+                            <ul>
+                                <li><span class="icon icon-map-marker"></span><span class="text">@item.Address</span></li>
+                                <li><a href="#"><span class="icon icon-phone"></span><span class="text">@item.Phone</span></a></li>
+                                <li><a href="#"><span class="icon icon-envelope"></span><span class="text">@item.Email</span></a></li>
+                            </ul>
+                        }
+                     
                     </div>
                 </div>
             </div>

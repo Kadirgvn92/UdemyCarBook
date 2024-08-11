@@ -1,4 +1,6 @@
-﻿
+﻿@using UdemyCarBook.WebUI.Areas.Admin.Models
+
+@model StatisticViewModel
 
 <section class="ftco-counter ftco-section img bg-light" id="section-counter">
     <div class="overlay"></div>
@@ -7,16 +9,16 @@
             <div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
                 <div class="block-18">
                     <div class="text text-border d-flex align-items-center">
-                        <strong class="number" data-number="60">0</strong>
-                        <span>Year <br>Experienced</span>
+                        <strong class="number" data-number="10">0</strong>
+                        <span>Sene <br>Tecrübe</span>
                     </div>
                 </div>
             </div>
             <div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
                 <div class="block-18">
                     <div class="text text-border d-flex align-items-center">
-                        <strong class="number" data-number="1090">0</strong>
-                        <span>Total <br>Cars</span>
+                        <strong class="number" data-number="@Model.CarCount.Count">0</strong>
+                        <span>Toplam  <br>Araç</span>
                     </div>
                 </div>
             </div>
@@ -24,15 +26,15 @@
                 <div class="block-18">
                     <div class="text text-border d-flex align-items-center">
                         <strong class="number" data-number="2590">0</strong>
-                        <span>Happy <br>Customers</span>
+                        <span>Mutlu <br>Müşteri</span>
                     </div>
                 </div>
             </div>
             <div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
                 <div class="block-18">
                     <div class="text d-flex align-items-center">
-                        <strong class="number" data-number="67">0</strong>
-                        <span>Total <br>Branches</span>
+                        <strong class="number" data-number="@Model.LocationCount.Count">0</strong>
+                        <span>Toplam <br>Lokasyon</span>
                     </div>
                 </div>
             </div>
