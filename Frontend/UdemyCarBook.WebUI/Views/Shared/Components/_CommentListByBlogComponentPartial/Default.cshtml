@@ -4,7 +4,7 @@
 
 
 <ul class="comment-list">
-    @foreach(var item in Model)
+    @foreach(var item in Model.Where(x => x.IsApproved == true))
     {
         <li class="comment">
             <div class="vcard bio">

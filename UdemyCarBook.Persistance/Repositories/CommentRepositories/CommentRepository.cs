@@ -66,7 +66,7 @@ public class CommentRepository<T> : IGenericRepository<Comment>
 
     public int GetCountCommentByBlog(int id)
     {
-        return _carBookContext.Comments.Where(x => x.BlogID == id).Count(); 
+        return _carBookContext.Comments.Where(x => x.BlogID == id && x.IsApproved == true).Count(); 
     }
 
     public async Task<Comment> GetCommentByIdAsync(int commentId)

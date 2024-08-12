@@ -53,10 +53,10 @@
                                 <a href="/Admin/Comment/Delete/@item.CommentId" class="btn btn-danger">Yorumu Kaldır</a>
                                 <div class="btn-group btn-group-toggle">
                                     <a href="/Admin/Comment/UpdateApproval?commentId=@item.CommentId&isApproved=false" class="btn btn-warning @(item.IsApproved ? "" : "disabled")">
-                                        Aktif Yap
+                                        Pasif Yap
                                     </a>
                                     <a href="/Admin/Comment/UpdateApproval?commentId=@item.CommentId&isApproved=true" class="btn btn-warning @(item.IsApproved ? "disabled" : "")">
-                                        Pasif Yap
+                                        Aktif Yap
                                     </a>
                                 </div>
                             </div>
