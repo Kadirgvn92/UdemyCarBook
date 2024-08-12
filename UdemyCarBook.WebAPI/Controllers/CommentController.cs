@@ -1,8 +1,11 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using UdemyCarBook.Application.DTO.CommentDTO;
 using UdemyCarBook.Application.Features.Mediator.Commands.CommentCommands;
 using UdemyCarBook.Application.Features.RepositoryPattern;
 using UdemyCarBook.Domain.Entities;
+using UdemyCarBook.Persistance.Repositories.CommentRepositories;
 
 namespace UdemyCarBook.WebAPI.Controllers;
 [Route("api/[controller]")]
@@ -47,6 +50,19 @@ public class CommentController : ControllerBase
     {
         _repository.Update(comment);
         return Ok("Comment updated successfully");
+    }
+    [HttpPut("UpdateApproval")]
+    public async Task<IActionResult> UpdateApproval([FromBody] UpdateCommentApprovalDTo dto)
+    {
+        var comment = await _repository.GetCommentByIdAsync(dto.CommentId);
+        if (comment == null)
+        {
+            return NotFound("Yorum bulunamadı.");
+        }
+
+        await _repository.UpdateApprovalAsync(dto.CommentId, dto.IsApproved);
+
+        return Ok(new { success = true, message = "Yorum durumu güncellendi." });
     }
     [HttpGet("CommentListByBlog")]
     public IActionResult CommentListByBlog(int id)

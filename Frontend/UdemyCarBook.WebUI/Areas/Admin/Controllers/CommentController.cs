@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using System.Text;
 using UdemyCarBook.DTO.AboutDTOs;
@@ -21,6 +22,7 @@ public class CommentController : Controller
 
     public async Task<IActionResult> Index(int id)
     {
+        TempData["id"] = id;
         var client1 = _httpClientFactory.CreateClient();
         var responseMessage1 = await client1.GetAsync($"https://localhost:44323/api/Blogs/{id}");
        
@@ -51,31 +53,31 @@ public class CommentController : Controller
         }
         return View();
     }
-    [HttpGet]
-    public async Task<IActionResult> Update(int id)
-    {
-        var client = _httpClientFactory.CreateClient();
-        var responseMessage = await client.GetAsync($"https://localhost:44323/api/About/{id}");
-        if (responseMessage.IsSuccessStatusCode)
-        {
-            var jsonData = await responseMessage.Content.ReadAsStringAsync();
-            var values = JsonConvert.DeserializeObject<UpdateAboutDTO>(jsonData);
-            return View(values);
-        }
-        return View();
-    }
-    [HttpPost]
-    public async Task<IActionResult> Update(UpdateAboutDTO DTO)
-    {
-        var client = _httpClientFactory.CreateClient();
-        var jsonData = JsonConvert.SerializeObject(DTO);
-        StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-        var responseMessage = await client.PutAsync("https://localhost:44323/api/About/", stringContent);
-        if (responseMessage.IsSuccessStatusCode)
-        {
-            return RedirectToAction("Index");
 
+    [HttpGet]
+    public async Task<IActionResult> UpdateApproval(int commentId, bool isApproved)
+    {
+        var client = _httpClientFactory.CreateClient();
+        var dto = new UpdateApprovalDTO
+        {
+            CommentId = commentId,
+            IsApproved = isApproved
+        };
+
+        var jsonData = JsonConvert.SerializeObject(dto);
+        var stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
+        var responseMessage = await client.PutAsync("https://localhost:44323/api/Comment/UpdateApproval", stringContent);
+
+        if (responseMessage.IsSuccessStatusCode)
+        {
+            ViewBag.Message = "Yorum durumu başarıyla güncellendi.";
         }
-        return View();
+        else
+        {
+            ViewBag.Message = "Yorum durumu güncellenirken bir hata oluştu.";
+        }
+
+        return RedirectToAction("Index","Comment", new {id = TempData["id"] }); 
     }
+
 }

@@ -7,6 +7,7 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
+
 <div class="content-wrapper">
     <div class="content mt-0 p-2">
         <div class="container-fluid">
@@ -42,11 +43,25 @@
                             </div>
                             <div class="card-body" style="display: block;">
                                 @item.Description<br />
-                                <small> @item.CreatedDate.ToShortDateString()</small>
+                                <br />
+                                @item.Mail<br />
+                                <small> @item.CreatedDate.ToString("dddd mm yy - HH:mm")</small>
                             </div>
+
+
                             <div class="card-footer" style="display: block;">
-                               <a href="/Admin/Comment/Delete/@item.CommentId" class="btn btn-danger">Yorumu Kaldır</a>
+                                <a href="/Admin/Comment/Delete/@item.CommentId" class="btn btn-danger">Yorumu Kaldır</a>
+                                <div class="btn-group btn-group-toggle">
+                                    <a href="/Admin/Comment/UpdateApproval?commentId=@item.CommentId&isApproved=false" class="btn btn-warning @(item.IsApproved ? "" : "disabled")">
+                                        Aktif Yap
+                                    </a>
+                                    <a href="/Admin/Comment/UpdateApproval?commentId=@item.CommentId&isApproved=true" class="btn btn-warning @(item.IsApproved ? "disabled" : "")">
+                                        Pasif Yap
+                                    </a>
+                                </div>
                             </div>
+
+
                         </div>
                     </div>
                 }
@@ -54,5 +69,4 @@
         </div>
     </div>
 </div>
-
 

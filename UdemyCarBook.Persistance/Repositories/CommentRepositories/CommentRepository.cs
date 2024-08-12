@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UdemyCarBook.Application.DTO.CommentDTO;
 using UdemyCarBook.Application.Features.RepositoryPattern;
 using UdemyCarBook.Domain.Entities;
 using UdemyCarBook.Persistance.Context;
@@ -33,6 +35,8 @@ public class CommentRepository<T> : IGenericRepository<Comment>
             CreatedDate = x.CreatedDate,
             Description = x.Description,
             Name = x.Name,
+            Mail = x.Mail,
+            IsApproved = x.IsApproved,
         }).ToList();
     }
 
@@ -65,5 +69,19 @@ public class CommentRepository<T> : IGenericRepository<Comment>
         return _carBookContext.Comments.Where(x => x.BlogID == id).Count(); 
     }
 
+    public async Task<Comment> GetCommentByIdAsync(int commentId)
+    {
+        return await _carBookContext.Comments.FindAsync(commentId);
+    }
 
+    public async Task UpdateApprovalAsync(int commentId, bool isApproved)
+    {
+        var comment = await _carBookContext.Comments.FindAsync(commentId);
+        if (comment != null)
+        {
+            comment.IsApproved = isApproved;
+            _carBookContext.Entry(comment).State = EntityState.Modified;
+            await _carBookContext.SaveChangesAsync();
+        }
+    }
 }
