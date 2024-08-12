@@ -16,16 +16,8 @@ public class _CreateCommentComponentPartial : ViewComponent
         _httpClientFactory = httpClientFactory;
     }
 
-    public async Task<IViewComponentResult> InvokeAsync(CreateCommentDTo DTO)
+    public IViewComponentResult Invoke()
     {
-        var client = _httpClientFactory.CreateClient();
-        var jsonData = JsonConvert.SerializeObject(DTO);
-        StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-        var responsMessage = await client.PostAsync("https://localhost:44323/api/Comment", stringContent);
-        if (responsMessage.IsSuccessStatusCode)
-        {
-            ViewBag.Messaege = "Yorumunuz admin tarafından kontrol edilerek işlem yapılacaktır. Teşekkür ederiz";
-        }
-        return View();
+       return View();
     }
 }
