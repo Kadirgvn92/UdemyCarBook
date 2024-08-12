@@ -18,7 +18,7 @@ public class CarFeaturesController : ControllerBase
     [HttpGet]
     public async Task<IActionResult> CarFeatureListByCarId(int id)
     {
-        var values = _mediator.Send(new GetCarFeatureByCarIdQuery(id));
+        var values = await _mediator.Send(new GetCarFeatureByCarIdQuery(id));
         return Ok(values);
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,7 +20,7 @@ public class CarFeatureRepository : ICarFeatureRepository
 
     public List<CarFeature> GetCarFeaturesByCarID(int id)
     {
-        var values = _context.CarFeatures.Where(x => x.CarID == id).ToList();   
+        var values = _context.CarFeatures.Include(y => y.Feature).Where(x => x.CarID == id).ToList();   
         return values;
     }
 }

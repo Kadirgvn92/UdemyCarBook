@@ -28,6 +28,7 @@ public class GetCarFeatureByCarIdQueryHandler : IRequestHandler<GetCarFeatureByC
             Available = x.Available,
             CarFeatureID = x.CarFeatureID,  
             FeatureID = x.FeatureID,
+            FeatureName = x.Feature.Name,
         }).ToList();
     }
 }
