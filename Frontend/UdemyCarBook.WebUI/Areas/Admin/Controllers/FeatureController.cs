@@ -33,6 +33,11 @@ public class FeatureController : Controller
     {
         return View();
     }
+    [HttpGet]
+    public IActionResult Detail()
+    {
+        return View();
+    }
     [HttpPost]
     public async Task<IActionResult> Create(CreateFeatureDTO dTO)
     {

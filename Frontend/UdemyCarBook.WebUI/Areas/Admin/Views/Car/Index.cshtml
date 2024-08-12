@@ -46,6 +46,7 @@
                                             <th class="text-uppercase text-primary text-sm font-weight-bolder ">Yakıt</th>
                                             <th class="text-uppercase text-primary text-sm font-weight-bolder text-center">Sil</th>
                                             <th class="text-uppercase text-primary text-sm font-weight-bolder text-center">Güncelle</th>
+                                            <th class="text-uppercase text-primary text-sm font-weight-bolder text-center">Detay</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -111,6 +112,13 @@
                         className: 'text-center',
                         render: function (data, type, row, meta) {
                             return '<a href="/Admin/Car/Update/' + row.carID + '" class="btn btn-info btn-sm">Güncelle</a>';
+                        }
+                    },
+                    {
+                        data: null,
+                        className: 'text-center',
+                        render: function (data, type, row, meta) {
+                            return '<a href="/Admin/Car/CarDetail/' + row.carID + '" class="btn btn-secondary btn-sm">Detay</a>';
                         }
                     }
                 ],
