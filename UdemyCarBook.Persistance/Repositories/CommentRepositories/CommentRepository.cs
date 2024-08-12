@@ -60,7 +60,10 @@ public class CommentRepository<T> : IGenericRepository<Comment>
         _carBookContext.SaveChanges();
     }
 
-
+    public int GetCountCommentByBlog(int id)
+    {
+        return _carBookContext.Comments.Where(x => x.BlogID == id).Count(); 
+    }
 
 
 }

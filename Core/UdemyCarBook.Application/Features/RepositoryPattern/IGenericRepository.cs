@@ -13,4 +13,5 @@ public interface IGenericRepository<T> where T : class
     void Remove(T item);
     T GetById(int id);
     List<T> GetCommentsByBlogId(int id);
+    int GetCountCommentByBlog(int id);
 }

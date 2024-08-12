@@ -50,4 +50,10 @@ public class CommentController : ControllerBase
         var values = _repository.GetCommentsByBlogId(id);
         return Ok(values);
     }
+    [HttpGet("CommentCountByBlog")]
+    public IActionResult CommentCountByBlog(int id)
+    {
+        var values = _repository.GetCountCommentByBlog(id);
+        return Ok(values);
+    }
 }
