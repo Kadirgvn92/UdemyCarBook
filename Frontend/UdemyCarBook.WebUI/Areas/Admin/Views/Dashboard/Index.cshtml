@@ -37,128 +37,18 @@
                 <div class="row mb-2">
                     <div class="col-sm-6">
                         <h1 class="m-0">Dashboard</h1>
-                    </div><!-- /.col -->
+                    </div>
 
-                </div><!-- /.row -->
-            </div><!-- /.container-fluid -->
+                </div>
+            </div>
         </div>
         <div class="container-fluid">
-            <div class="row">
-                <div class="col-12 col-sm-6 col-md-3">
-                    <div class="info-box">
-                        <span class="info-box-icon bg-info elevation-1"><i class="fas fa-car"></i></span>
-
-                        <div class="info-box-content">
-                            <span class="info-box-text">Araç Sayısı</span>
-                            <span class="info-box-number">
-                                10
-                                <small>%</small>
-                            </span>
-                        </div>
-                        <!-- /.info-box-content -->
-                    </div>
-                    <!-- /.info-box -->
-                </div>
-                <!-- /.col -->
-                <div class="col-12 col-sm-6 col-md-3">
-                    <div class="info-box mb-3">
-                        <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-thumbs-up"></i></span>
-
-                        <div class="info-box-content">
-                            <span class="info-box-text">Beğeniler</span>
-                            <span class="info-box-number">41,410</span>
-                        </div>
-                        <!-- /.info-box-content -->
-                    </div>
-                    <!-- /.info-box -->
-                </div>
-                <!-- /.col -->
-                <!-- fix for small devices only -->
-                <div class="clearfix hidden-md-up"></div>
-
-                <div class="col-12 col-sm-6 col-md-3">
-                    <div class="info-box mb-3">
-                        <span class="info-box-icon bg-success elevation-1"><i class="fas fa-key"></i></span>
-
-                        <div class="info-box-content">
-                            <span class="info-box-text">Kiralamalar</span>
-                            <span class="info-box-number">760</span>
-                        </div>
-                        <!-- /.info-box-content -->
-                    </div>
-                    <!-- /.info-box -->
-                </div>
-                <!-- /.col -->
-                <div class="col-12 col-sm-6 col-md-3">
-                    <div class="info-box mb-3">
-                        <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
-
-                        <div class="info-box-content">
-                            <span class="info-box-text">Müşteriler</span>
-                            <span class="info-box-number">2,000</span>
-                        </div>
-                        <!-- /.info-box-content -->
-                    </div>
-                    <!-- /.info-box -->
-                </div>
-                <!-- /.col -->
-
-            </div>
+            @await Component.InvokeAsync("_AdminDashboardCardsComponentPartial")
             <div class="row>">
 
                 <div id="map"></div>
 
             </div>
-            @*  <div class="row">
-
-            <div class="col-md-6">
-            <!-- Info Boxes Style 2 -->
-            <div class="info-box mb-3 bg-warning">
-            <span class="info-box-icon"><i class="fas fa-tag"></i></span>
-
-            <div class="info-box-content">
-            <span class="info-box-text">Inventory</span>
-            <span class="info-box-number">5,200</span>
-            </div>
-            <!-- /.info-box-content -->
-            </div>
-            <!-- /.info-box -->
-            <div class="info-box mb-3 bg-success">
-            <span class="info-box-icon"><i class="far fa-heart"></i></span>
-
-            <div class="info-box-content">
-            <span class="info-box-text">Mentions</span>
-            <span class="info-box-number">92,050</span>
-            </div>
-            <!-- /.info-box-content -->
-            </div>
-            <!-- /.info-box -->
-            <div class="info-box mb-3 bg-danger">
-            <span class="info-box-icon"><i class="fas fa-cloud-download-alt"></i></span>
-
-            <div class="info-box-content">
-            <span class="info-box-text">Downloads</span>
-            <span class="info-box-number">114,381</span>
-            </div>
-            <!-- /.info-box-content -->
-            </div>
-            <!-- /.info-box -->
-            <div class="info-box mb-3 bg-info">
-            <span class="info-box-icon"><i class="far fa-comment"></i></span>
-
-            <div class="info-box-content">
-            <span class="info-box-text">Direct Messages</span>
-            <span class="info-box-number">163,921</span>
-            </div>
-            <!-- /.info-box-content -->
-            </div>
-            <!-- /.info-box -->
-
-
-            </div>
-
-            </div> *@
-
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
@@ -299,35 +189,36 @@
 
 @section Scripts {
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <script>
         var ctx = document.getElementById('salesChart').getContext('2d');
         var salesChart = new Chart(ctx, {
-            type: 'line', // Alan grafiği için 'line' kullanıyoruz
+            type: 'line',
             data: {
-                labels: ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz'], // X ekseni için Türkçe aylar
+                labels: ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz'], 
                 datasets: [
                     {
-                        label: 'Satışlar', // Satış verilerinin etiketi
-                        data: [65, 59, 80, 81, 56, 55, 40], // Satış verileri
-                        backgroundColor: 'rgba(75, 192, 192, 0.5)', // Alan rengi
-                        borderColor: 'rgba(75, 192, 192, 1)', // Çizgi rengi
-                        borderWidth: 1, // Çizgi kalınlığı
-                        fill: true // Alanın dolu olmasını sağlar
+                        label: 'Satışlar', 
+                        data: [65, 59, 80, 81, 56, 55, 40], 
+                        backgroundColor: 'rgba(75, 192, 192, 0.5)', 
+                        borderColor: 'rgba(75, 192, 192, 1)', 
+                        borderWidth: 1, 
+                        fill: true
                     },
                     {
-                        label: 'Hedefler', // Hedef verilerinin etiketi
-                        data: [70, 65, 85, 90, 60, 60, 50], // Hedef verileri
-                        backgroundColor: 'rgba(255, 99, 132, 0.5)', // Alan rengi (hedefler için)
-                        borderColor: 'rgba(255, 99, 132, 1)', // Çizgi rengi (hedefler için)
-                        borderWidth: 1, // Çizgi kalınlığı
-                        fill: true // Alanın dolu olmasını sağlar
+                        label: 'Hedefler', 
+                        data: [70, 65, 85, 90, 60, 60, 50], 
+                        backgroundColor: 'rgba(255, 99, 132, 0.5)', 
+                        borderColor: 'rgba(255, 99, 132, 1)', 
+                        borderWidth: 1, 
+                        fill: true // 
                     }
                 ]
             },
             options: {
                 scales: {
                     y: {
-                        beginAtZero: true // Y ekseni sıfırdan başlasın
+                        beginAtZero: true 
                     }
                 }
             }
