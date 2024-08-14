@@ -35,6 +35,13 @@ public class CarFeatureRepository : ICarFeatureRepository
         _context.SaveChanges();
     }
 
+    public void CreateCarFeatureByCar(CarFeature carFeature)
+    {
+        _context.CarFeatures.Add(carFeature);
+        _context.SaveChanges();
+
+    }
+
     public List<CarFeature> GetCarFeaturesByCarID(int id)
     {
         var values = _context.CarFeatures.Include(y => y.Feature).Where(x => x.CarID == id).ToList();   

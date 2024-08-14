@@ -33,7 +33,7 @@
                                         <a href="/Admin/Car/Create/" class="btn btn-primary">Yeni Ürün Oluştur</a>
                                     </div>
                                 </div>
-                               
+
                                 <table id="carsTable" class="table table-striped">
                                     <thead>
                                         <tr>
@@ -47,10 +47,13 @@
                                             <th class="text-uppercase text-primary text-sm font-weight-bolder text-center">Sil</th>
                                             <th class="text-uppercase text-primary text-sm font-weight-bolder text-center">Güncelle</th>
                                             <th class="text-uppercase text-primary text-sm font-weight-bolder text-center">Detay</th>
+                                            <th class="text-uppercase text-primary text-sm font-weight-bolder text-center">Özellik Ata</th>
+                                            <th class="text-uppercase text-primary text-sm font-weight-bolder text-center">Sitede Gör</th>
+                                            <th class="text-uppercase text-primary text-sm font-weight-bolder text-center">Fiyat Bilgileri</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                      
+
                                     </tbody>
                                 </table>
                             </div>
@@ -66,73 +69,94 @@
 
     @await Component.InvokeAsync("_AdminDatatableScriptPartial")
 
-    <script>
-        $(document).ready(function () {
-            $('#carsTable').DataTable({
-                ajax: {
-                    url: '/Admin/Car/GetCars',
-                    type: 'GET',
-                    dataSrc: function (json) {
-                        // Gelen veriyi konsola yazdır
-                        console.log(json);
-                        return json; // Veriyi tabloya ekle
-                    }
-                },
-                columns: [
-                    {
-                        data: null,
-                        className: 'text-center',
-                        width:'50px',
-                        render: function (data, type, row, meta) {
-                            return meta.row + 1; // Satır numarasını döndür (1 tabanlı)
-                        }
-                    },
-                    {
-                        data: 'coverImageUrl',
-                        className: 'text-center',
-                        width:'200px',
-                        render: function (data, type, row, meta) {
-                            return '<img src="' + data + '" alt="Car Image" style="width:150px;heigh:120px;border-radius:10px;">';
-                        }
-                    },
-                    { data: 'brandName' },        // Marka Adı
-                    { data: 'model' },            // Model
-                    { data: 'transmission' },         // Yakıt
-                    { data: 'km' },  
-                    { data: 'fuel' },  
-                    {
-                        data: null,
-                        className: 'text-center',
-                        render: function (data, type, row, meta) {
-                            return '<a href="/Admin/Car/Delete/' + row.carID + '" class="btn btn-danger btn-sm">Sil</a>';
-                        }
-                    },
-                    {
-                        data: null,
-                        className: 'text-center',
-                        render: function (data, type, row, meta) {
-                            return '<a href="/Admin/Car/Update/' + row.carID + '" class="btn btn-info btn-sm">Güncelle</a>';
-                        }
-                    },
-                    {
-                        data: null,
-                        className: 'text-center',
-                        render: function (data, type, row, meta) {
-                            return '<a href="/Admin/Feature/Detail/' + row.carID + '" class="btn btn-secondary btn-sm">Detay</a>';
-                        }
-                    }
-                ],
-                paging: true,
-                lengthChange: true,
-                searching: true,
-                ordering: true,
-                info: true,
-                autoWidth: true,
-                responsive: true,
-                dom: 'Bfrtip',
-                language: dataTableLanguageSettings,
-                buttons: ["copy", "csv", "excel", "pdf", "print", "colvis"]
-            });
-        });
-    </script>
+                <script>
+                    $(document).ready(function () {
+                        $('#carsTable').DataTable({
+                            ajax: {
+                                url: '/Admin/Car/GetCars',
+                                type: 'GET',
+                                dataSrc: function (json) {
+                                    // Gelen veriyi konsola yazdır
+                                    console.log(json);
+                                    return json; // Veriyi tabloya ekle
+                                }
+                            },
+                            columns: [
+                                {
+                                    data: null,
+                                    className: 'text-center',
+                                    width:'50px',
+                                    render: function (data, type, row, meta) {
+                                        return meta.row + 1; // Satır numarasını döndür (1 tabanlı)
+                                    }
+                                },
+                                {
+                                    data: 'coverImageUrl',
+                                    className: 'text-center',
+                                    width:'200px',
+                                    render: function (data, type, row, meta) {
+                                        return '<img src="' + data + '" alt="Car Image" style="width:150px;heigh:120px;border-radius:10px;">';
+                                    }
+                                },
+                                { data: 'brandName' },        // Marka Adı
+                                { data: 'model' },            // Model
+                                { data: 'transmission' },         // Yakıt
+                                { data: 'km' },  
+                                { data: 'fuel' },  
+                                {
+                                    data: null,
+                                    className: 'text-center',
+                                    render: function (data, type, row, meta) {
+                                        return '<a href="/Admin/Car/Delete/' + row.carID + '" class="btn btn-outline-danger btn-sm">Sil</a>';
+                                    }
+                                },
+                                {
+                                    data: null,
+                                    className: 'text-center',
+                                    render: function (data, type, row, meta) {
+                                        return '<a href="/Admin/Car/Update/' + row.carID + '" class="btn btn-outline-info btn-sm">Güncelle</a>';
+                                    }
+                                },
+                                {
+                                    data: null,
+                                    className: 'text-center',
+                                    render: function (data, type, row, meta) {
+                                        return '<a href="/Admin/Feature/Detail/' + row.carID + '" class="btn btn-outline-secondary btn-sm">Detay</a>';
+                                    }
+                                },
+                                {
+                                    data: null,
+                                    className: 'text-center',
+                                    render: function (data, type, row, meta) {
+                                            return '<a href="/Admin/Feature/CreateFeatureByCarID/" class="btn btn-outline-warning btn-sm">Özellik Ata</a>';
+                                    }
+                                },
+                                {
+                                    data: null,
+                                    className: 'text-center',
+                                    render: function (data, type, row, meta) {
+                                        return '<a href="/Car/Detail/' + row.carID + '" class="btn btn-outline-success btn-sm">Sitede Gör</a>';
+                                    }
+                                },
+                                {
+                                    data: null,
+                                    className: 'text-center',
+                                    render: function (data, type, row, meta) {
+                                            return '<a href="/Admin/Feature/Detail/' + row.carID + '" class="btn btn-outline-dark btn-sm">Fiyat Bilgileri</a>';
+                                     }
+                                }
+                            ],
+                            paging: true,
+                            lengthChange: true,
+                            searching: true,
+                            ordering: true,
+                            info: true,
+                            autoWidth: true,
+                            responsive: true,
+                            dom: 'Bfrtip',
+                            language: dataTableLanguageSettings,
+                            buttons: ["copy", "csv", "excel", "pdf", "print", "colvis"]
+                        });
+                    });
+                </script>
 }

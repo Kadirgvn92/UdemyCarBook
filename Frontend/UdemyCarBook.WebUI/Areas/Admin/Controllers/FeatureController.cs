@@ -48,6 +48,19 @@ public class FeatureController : Controller
         }
         return View();
     }
+    [HttpGet]
+    public async Task<IActionResult> CreateFeatureByCarID()
+    {
+        var client = _httpClientFactory.CreateClient();
+        var responseMessage = await client.GetAsync($"https://localhost:44323/api/Feature");
+        if (responseMessage.IsSuccessStatusCode)
+        {
+            var jsonData = await responseMessage.Content.ReadAsStringAsync();
+            var values = JsonConvert.DeserializeObject<List<ResultFeatureDTO>>(jsonData);
+            return View(values);
+        }
+        return View();
+    }
     [HttpPost]
     public async Task<IActionResult> Detail(List<ResultCarFeatureDTO> DTO)
     {
@@ -56,20 +69,15 @@ public class FeatureController : Controller
             if (item.Available)
             {
                 var client = _httpClientFactory.CreateClient();
-                var jsonData = JsonConvert.SerializeObject(DTO);
-                StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-                var responseMessage = await client.PostAsync("https://localhost:44323/api/Categories/", stringContent);
-                if (responseMessage.IsSuccessStatusCode)
-                {
-                    return View();
-                }
+                await client.GetAsync($"https://localhost:44323/api/CarFeatures/CarFeatureChangeAvailableToTrue?id={item.CarFeatureID}");
             }
             else
             {
-
+                var client = _httpClientFactory.CreateClient();
+                await client.GetAsync($"https://localhost:44323/api/CarFeatures/CarFeatureChangeAvailableToFalse?id={item.CarFeatureID}");
             }
         }
-        return RedirectToAction("Index");
+        return RedirectToAction("Index","Car");
     }
 
     [HttpPost]

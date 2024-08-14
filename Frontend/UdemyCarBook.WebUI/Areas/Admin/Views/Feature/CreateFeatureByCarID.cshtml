@@ -1,0 +1,50 @@
+﻿@using UdemyCarBook.DTO.FeatureDTOs
+
+@model List<ResultFeatureDTO>
+
+@{
+    ViewData["Title"] = "Detail";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    int count = 0;
+}
+
+<div class="content-wrapper">
+    <div class="content mt-0 p-2">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Araca ait Özellik Tanımlama Ekranı</div>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-body p-0">
+                                <div class="mailbox-controls">
+                                    <div class="card-sub">
+                                        Araca ait özellikleri tanımlamasını bu sayfada görüntüleyebilir veya güncelleyebilirsiniz.
+                                    </div>
+                                </div>
+                                <form method="post" enctype="multipart/form-data">
+                                    @for (var i = 0; i < Model.Count; i++)
+                                    {
+                                        <div class="form-check">
+                                            <input type="hidden" class="form-control form-control-s" asp-for="@Model[i].FeatureID">
+                                            <input type="hidden" class="form-control form-control-s" asp-for="@Model[i].Name">
+                                            <input type="checkbox" class="form-check-input">
+                                            <label class="form-check-label">@Model[i].Name</label>
+                                        </div>
+                                    }
+
+
+                                    <div class="form-group p-1">
+                                        <button type="submit" class="btn btn-primary">Araca Özellik Tanımla </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
