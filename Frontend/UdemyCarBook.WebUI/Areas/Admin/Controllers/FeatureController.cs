@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Humanizer;
+using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Text;
 using UdemyCarBook.DTO.CarFeatureDTOs;
@@ -47,6 +48,30 @@ public class FeatureController : Controller
         }
         return View();
     }
+    [HttpPost]
+    public async Task<IActionResult> Detail(List<ResultCarFeatureDTO> DTO)
+    {
+        foreach(var item in DTO)
+        {
+            if (item.Available)
+            {
+                var client = _httpClientFactory.CreateClient();
+                var jsonData = JsonConvert.SerializeObject(DTO);
+                StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
+                var responseMessage = await client.PostAsync("https://localhost:44323/api/Categories/", stringContent);
+                if (responseMessage.IsSuccessStatusCode)
+                {
+                    return View();
+                }
+            }
+            else
+            {
+
+            }
+        }
+        return RedirectToAction("Index");
+    }
+
     [HttpPost]
     public async Task<IActionResult> Create(CreateFeatureDTO dTO)
     {
