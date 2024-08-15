@@ -15,6 +15,8 @@ public class CarBookContext : DbContext
     }
 
     public DbSet<About> Abouts { get; set; }
+    public DbSet<AppUser> AppUsers { get; set; }
+    public DbSet<AppRole> appRoles { get; set; }
     public DbSet<Author> Authors { get; set; }
     public DbSet<Banner> Banners { get; set; }
     public DbSet<Brand> Brands { get; set; }

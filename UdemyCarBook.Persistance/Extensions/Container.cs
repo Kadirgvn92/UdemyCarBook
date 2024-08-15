@@ -34,6 +34,8 @@ public static class Container
 {
     public static void ContainerDependencies(this IServiceCollection services)
     {
+        
+
         services.AddScoped<CarBookContext>();
         services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
         services.AddScoped(typeof(ICarRepository), typeof(CarRepository));
