@@ -33,6 +33,7 @@ public class CarBookContext : DbContext
     public DbSet<Pricing> Pricings { get; set; }
     public DbSet<RentACar> RentACars { get; set; }
     public DbSet<Reservation> Reservations { get; set; }
+    public DbSet<Review> Review { get; set; }
     public DbSet<RentACarProcess> RentACarProcesses { get; set; }
     public DbSet<Service> Services { get; set; }
     public DbSet<SocialMedia> SocialMedias { get; set; }
