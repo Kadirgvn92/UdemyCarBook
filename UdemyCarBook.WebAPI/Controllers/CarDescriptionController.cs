@@ -17,7 +17,7 @@ public class CarDescriptionController : ControllerBase
 	[HttpGet]
 	public async Task<IActionResult> CarDescription(int id)
 	{
-		var values = _mediator.Send(new GetCarDescriptionQuery(id));
+		var values = await _mediator.Send(new GetCarDescriptionQuery(id));
 		return Ok(values);
 	}
 }

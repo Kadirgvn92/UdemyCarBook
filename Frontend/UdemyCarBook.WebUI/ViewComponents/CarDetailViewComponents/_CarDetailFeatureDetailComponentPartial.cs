@@ -1,15 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using System.Net.Http;
 using UdemyCarBook.DTO.CarFeatureDTOs;
 
 namespace UdemyCarBook.WebUI.ViewComponents.CarDetailViewComponents;
 
-public class _CarDetailFeatureComponentPartial : ViewComponent
+public class _CarDetailFeatureDetailComponentPartial : ViewComponent
 {
 	private readonly IHttpClientFactory _httpClientFactory;
 
-	public _CarDetailFeatureComponentPartial(IHttpClientFactory httpClientFactory)
+	public _CarDetailFeatureDetailComponentPartial(IHttpClientFactory httpClientFactory)
 	{
 		_httpClientFactory = httpClientFactory;
 	}
