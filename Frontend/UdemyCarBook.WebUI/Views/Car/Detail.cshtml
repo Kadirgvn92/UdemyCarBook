@@ -9,6 +9,6 @@
 		
 		@await Component.InvokeAsync("_CarDetailMainComponentPartial", new { id = ViewBag.Id })
 
-		@await Component.InvokeAsync("_CarDetailFeatureComponentPartial")
+		@await Component.InvokeAsync("_CarDetailFeatureComponentPartial", new { id = ViewBag.Id })
 	</div>
 </section>
