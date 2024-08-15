@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using UdemyCarBook.Application.Interfaces;
@@ -34,7 +35,12 @@ public class Repository<T> : IRepository<T> where T : class
        return await _context.Set<T>().ToListAsync();
     }
 
-    public async Task<T> GetByIDAsync(int id)
+	public async Task<T?> GetByFilterAsync(Expression<Func<T, bool>> filter)
+	{
+		return await _context.Set<T>().SingleOrDefaultAsync(filter);
+	}
+
+	public async Task<T> GetByIDAsync(int id)
     {
         return await _context.Set<T>().FindAsync(id);
     }
