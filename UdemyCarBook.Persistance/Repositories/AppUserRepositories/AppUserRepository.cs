@@ -10,23 +10,11 @@ using UdemyCarBook.Domain.Entities;
 using UdemyCarBook.Persistance.Context;
 
 namespace UdemyCarBook.Persistance.Repositories.AppUserRepositories;
-public class AppUserRepository : IAppUserRepository
+public class AppUserRepository 
 {
 	CarBookContext _carBookContext;
-public AppUserRepository(CarBookContext carBookContext)
+	public AppUserRepository(CarBookContext carBookContext)
 	{
 		_carBookContext = carBookContext;
-	}
-
-	public async Task<AppUser> GetByFilterAsync(Expression<Func<AppUser, bool>> filter)
-	{
-		var values = _carBookContext.AppUsers.Where(filter).FirstOrDefault();
-		return values;
-	}
-
-	public async Task<AppRole> GetRoleByFilterAsync(Expression<Func<AppRole, bool>> filter)
-	{
-		var values = _carBookContext.appRoles.Where(filter).FirstOrDefault();
-		return values;
 	}
 }
