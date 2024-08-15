@@ -23,6 +23,7 @@ public class GetCarPricingWithCarQueryHandler : IRequestHandler<GetCarPricingWit
 		var values = _carPricingRepository.GetCarPricingWithCar();
 		return values.Select(x => new GetCarPricingWithCarQueryResult
 		{
+			CarID = x.CarID,
 			Amount = x.Amount,
 			Brand = x.Car.Brands.Name,
 			CoverImageUrl = x.Car.CoverImageUrl,

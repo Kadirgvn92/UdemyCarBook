@@ -65,11 +65,7 @@ public class CarController : Controller
         return brandvalues;
     }
 
-    [HttpGet]
-    public async Task<IActionResult> CarDetail(int id)
-    {
-        return View();
-    }
+
     [HttpGet]
     public async Task<IActionResult> Create()
     {

@@ -30,7 +30,11 @@ public class CarRepository : ICarRepository
         return values;
     }
 
-	
+	public Car GetCarWithBrandByID(int id)
+	{
+		var values = _context.Cars.Include(x => x.Brands).Where(x => x.CarID == id).FirstOrDefault();
+		return values;
+	}
 
 	public List<Car> GetLast5CarWithBrand()
     {

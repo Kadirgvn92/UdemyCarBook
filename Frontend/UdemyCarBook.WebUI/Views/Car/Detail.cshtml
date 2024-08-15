@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewData["Title"] = "Araç Detayı";
+    Layout = "~/Views/UILayout/Index.cshtml";
+}
+
+<section class="ftco-section ftco-car-details">
+	<div class="container">
+		
+		@await Component.InvokeAsync("_CarDetailMainComponentPartial", new { id = ViewBag.Id })
+
+		@await Component.InvokeAsync("_CarDetailFeatureComponentPartial")
+	</div>
+</section>

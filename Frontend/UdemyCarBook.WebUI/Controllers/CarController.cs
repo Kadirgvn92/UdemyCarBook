@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using UdemyCarBook.DTO.BlogDTOs;
 using UdemyCarBook.DTO.CarDTOs;
 using UdemyCarBook.DTO.CarPricingDTOs;
 using UdemyCarBook.DTO.ServiceDTOs;
@@ -17,7 +18,7 @@ public class CarController : Controller
     public async Task<IActionResult> Index()
     {
         var client = _httpClientFactory.CreateClient();
-        var responseMessage = await client.GetAsync("https://localhost:44323/api/CarPricings");
+        var responseMessage = await client.GetAsync("https://localhost:44323/api/CarPricings/GetCarPricingWithCar");
         if (responseMessage.IsSuccessStatusCode)
         {
             var jsonData = await responseMessage.Content.ReadAsStringAsync();
@@ -26,4 +27,9 @@ public class CarController : Controller
         }
         return View();
     }
+	public async Task<IActionResult> Detail(int id)
+	{
+		ViewBag.Id = id;
+		return View();
+	}
 }

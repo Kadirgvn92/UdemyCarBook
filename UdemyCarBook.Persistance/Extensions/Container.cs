@@ -66,6 +66,7 @@ public static class Container
         services.AddScoped<UpdateCarCommandHandler>();
         services.AddScoped<RemoveCarCommandHandler>();
         services.AddScoped<GetLast5CarsWithBrandQueryHandler>();
+        services.AddScoped<GetCarWithBrandByIdQueryHandler>();
 
         services.AddScoped<GetContactQueryHandler>();
         services.AddScoped<GetContactByIdQueryHandler>();

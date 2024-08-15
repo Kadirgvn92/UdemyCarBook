@@ -16,8 +16,8 @@ public class CarPricingsController : ControllerBase
 	{
 		_mediator = mediator;
 	}
-	[HttpGet]
-	public async Task<IActionResult> GetCarPricingWithCarList()
+	[HttpGet("GetCarPricingWithCar")]
+	public async Task<IActionResult> GetCarPricingWithCar()
 	{
 		var values = await _mediator.Send(new GetCarPricingWithCarQuery());
 		return Ok(values);

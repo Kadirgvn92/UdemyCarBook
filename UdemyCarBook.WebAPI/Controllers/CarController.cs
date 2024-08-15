@@ -18,29 +18,32 @@ public class CarController : ControllerBase
     private readonly UpdateCarCommandHandler _updateCarCommandHandler;
     private readonly RemoveCarCommandHandler _removeCarCommandHandler;
     private readonly GetLast5CarsWithBrandQueryHandler _getLast5CarsWithBrandQueryHandler;
+    private readonly GetCarWithBrandByIdQueryHandler _getCarWithBrandByIdQueryHandler;
     private readonly IMediator _mediator;
 
-    public CarController(CreateCarCommandHandler createCarCommandHandler,
-        GetCarByIDQueryHandler getCarByIdQueryHandler,
-        GetCarQueryHandler getCarQueryHandler,
-        UpdateCarCommandHandler updateCarCommandHandler,
-        RemoveCarCommandHandler removeCarCommandHandler,
-        GetCarWithBrandQueryHandler getCarWithQueryHandler,
-        GetLast5CarsWithBrandQueryHandler getLast5CarsWithBrandQueryHandler
+	public CarController(CreateCarCommandHandler createCarCommandHandler,
+		GetCarByIDQueryHandler getCarByIdQueryHandler,
+		GetCarQueryHandler getCarQueryHandler,
+		UpdateCarCommandHandler updateCarCommandHandler,
+		RemoveCarCommandHandler removeCarCommandHandler,
+		GetCarWithBrandQueryHandler getCarWithQueryHandler,
+		GetLast5CarsWithBrandQueryHandler getLast5CarsWithBrandQueryHandler
 ,
-        IMediator mediator)
-    {
-        _createCarCommandHandler = createCarCommandHandler;
-        _getCarByIdQueryHandler = getCarByIdQueryHandler;
-        _getCarQueryHandler = getCarQueryHandler;
-        _updateCarCommandHandler = updateCarCommandHandler;
-        _removeCarCommandHandler = removeCarCommandHandler;
-        _getCarWithQueryHandler = getCarWithQueryHandler;
-        _getLast5CarsWithBrandQueryHandler = getLast5CarsWithBrandQueryHandler;
-        _mediator = mediator;
-    }
+		IMediator mediator,
+		GetCarWithBrandByIdQueryHandler getCarWithBrandByIdQueryHandler)
+	{
+		_createCarCommandHandler = createCarCommandHandler;
+		_getCarByIdQueryHandler = getCarByIdQueryHandler;
+		_getCarQueryHandler = getCarQueryHandler;
+		_updateCarCommandHandler = updateCarCommandHandler;
+		_removeCarCommandHandler = removeCarCommandHandler;
+		_getCarWithQueryHandler = getCarWithQueryHandler;
+		_getLast5CarsWithBrandQueryHandler = getLast5CarsWithBrandQueryHandler;
+		_mediator = mediator;
+		_getCarWithBrandByIdQueryHandler = getCarWithBrandByIdQueryHandler;
+	}
 
-    [HttpGet]
+	[HttpGet]
     public async Task<IActionResult> CarList()
     {
         var values = await _getCarQueryHandler.Handle();
@@ -82,6 +85,12 @@ public class CarController : ControllerBase
         var values = _getLast5CarsWithBrandQueryHandler.Handle();
         return Ok(values);
     }
-    
+	[HttpGet("GetCarWithBrandById/{id}")]
+	public async Task<IActionResult> GetCarWithBrandById(int id)
+	{
+		var values = await _getCarWithBrandByIdQueryHandler.Handle(new GetCarWithBrandByIdQuery(id));
+		return Ok(values);
+	}
+
 
 }
