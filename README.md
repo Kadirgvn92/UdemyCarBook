@@ -30,3 +30,11 @@
 ![Harita](./car-3.png)
 
 ![Veri Tablosu](./car-4.png)
+
+![Veri Tablosu](./car-5.png)
+
+![Veri Tablosu](./car-6.png)
+
+![Veri Tablosu](./car-7.png)
+
+![Veri Tablosu](./car-8.png)
