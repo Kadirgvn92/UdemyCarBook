@@ -23,14 +23,10 @@
 
 ## Ekran Görüntüleri
 
-![Ana Sayfa](./images/homepage.png)
-*Ana Sayfa Görüntüsü*
+![Ana Sayfa](./car-1.png)
 
-![Araç Listesi](./images/carlist.png)
-*Araç Listesi Görüntüsü*
+![Araç Listesi](./car-2.png)
 
-![Harita](./images/map.png)
-*Harita Görüntüsü*
+![Harita](./car-3.png)
 
-![Veri Tablosu](./images/datatables.png)
-*DataTables Görüntüsü*
+![Veri Tablosu](./car-4.png)
