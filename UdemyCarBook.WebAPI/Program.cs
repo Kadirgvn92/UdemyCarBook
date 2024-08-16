@@ -9,8 +9,13 @@ using UdemyCarBook.Domain.Entities;
 using UdemyCarBook.Persistance.Context;
 using UdemyCarBook.Persistance.Extensions;
 using UdemyCarBook.Persistance.Repositories;
+using UdemyCarBook.WebAPI.Hubs;
 
 var builder = WebApplication.CreateBuilder(args);
+
+
+
+builder.Services.AddSignalR();
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(opt =>
 {
@@ -28,15 +33,16 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
 
 builder.Services.ContainerDependencies();
 
-builder.Services.AddCors(options =>
+builder.Services.AddCors(opt =>
 {
-    options.AddPolicy("AllowAll",
-        builder =>
-        {
-            builder.AllowAnyOrigin()
-                   .AllowAnyMethod()
-                   .AllowAnyHeader();
-        });
+    opt.AddPolicy("CarsPolicy", builder =>
+    {
+        builder
+            .AllowAnyHeader()
+            .AllowAnyMethod()
+            .SetIsOriginAllowed((host) => true)
+            .AllowCredentials();
+    });
 });
 
 builder.Services.AddControllers();
@@ -55,14 +61,17 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+
 app.UseHttpsRedirection();
 
-app.UseCors("AllowAll");
+app.UseCors("CarsPolicy");
 
 app.UseAuthentication();
 
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.MapHub<CarHub>("/carhub");
 
 app.Run();
